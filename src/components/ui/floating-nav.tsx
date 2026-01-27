@@ -38,6 +38,7 @@ export const FloatingNav = ({
     { name: t("nav.thesis"), link: "/thesis" },
     { name: t("nav.robotics"), link: "/robotics" },
     { name: t("nav.about"), link: "/about" },
+    { name: t("nav.contact"), link: "/contact" },
   ];
 
   return (

@@ -1,0 +1,80 @@
+{
+  "projects": [
+    {
+      "id": "project-1",
+      "title": {
+        "en": "AI Research Project",
+        "es": "Proyecto de Investigación en IA"
+      },
+      "description": {
+        "en": "Advanced machine learning research project focusing on reinforcement learning algorithms.",
+        "es": "Proyecto de investigación avanzada en aprendizaje automático enfocado en algoritmos de aprendizaje por refuerzo."
+      },
+      "category": "aiml",
+      "techStack": ["Python", "TensorFlow", "PyTorch", "OpenAI Gym"],
+      "links": {
+        "github": "https://github.com/username/project",
+        "live": "",
+        "paper": "/papers/project1.pdf"
+      },
+      "featured": true
+    },
+    {
+      "id": "project-2",
+      "title": {
+        "en": "Cryptography Library",
+        "es": "Biblioteca de Criptografía"
+      },
+      "description": {
+        "en": "Implementation of modern cryptographic algorithms with focus on post-quantum cryptography.",
+        "es": "Implementación de algoritmos criptográficos modernos con enfoque en criptografía post-cuántica."
+      },
+      "category": "crypto",
+      "techStack": ["Python", "C++", "OpenSSL"],
+      "links": {
+        "github": "https://github.com/username/crypto-lib",
+        "live": "",
+        "paper": "/papers/crypto.pdf"
+      },
+      "featured": true
+    },
+    {
+      "id": "project-3",
+      "title": {
+        "en": "Autonomous Robot Navigation",
+        "es": "Navegación Autónoma de Robots"
+      },
+      "description": {
+        "en": "Mobile robot with autonomous navigation using SLAM and path planning algorithms.",
+        "es": "Robot móvil con navegación autónoma usando SLAM y algoritmos de planificación de rutas."
+      },
+      "category": "robotics",
+      "techStack": ["ROS", "Python", "C++", "OpenCV"],
+      "links": {
+        "github": "https://github.com/username/robot-nav",
+        "live": "",
+        "paper": ""
+      },
+      "featured": true
+    },
+    {
+      "id": "project-4",
+      "title": {
+        "en": "Full Stack Web Application",
+        "es": "Aplicación Web Full Stack"
+      },
+      "description": {
+        "en": "Modern web application built with Next.js, TypeScript, and PostgreSQL.",
+        "es": "Aplicación web moderna construida con Next.js, TypeScript y PostgreSQL."
+      },
+      "category": "webmobile",
+      "techStack": ["Next.js", "TypeScript", "PostgreSQL", "Tailwind CSS"],
+      "links": {
+        "github": "https://github.com/username/webapp",
+        "live": "https://demo.example.com",
+        "paper": ""
+      },
+      "featured": true
+    }
+  ]
+}

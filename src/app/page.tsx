@@ -7,7 +7,8 @@ import { EncryptedText } from "@/components/ui/encrypted-text";
 import { EvervaultCard } from "@/components/ui/evervault-card";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Brain, Bot, Globe, ChevronDown } from "lucide-react";
+import { Brain, Bot, Computer, ChevronDown } from "lucide-react";
+import { TypewriterText } from "@/components/TypewriterText";
 
 const HighlightCard = ({
   title,
@@ -43,13 +44,13 @@ const HighlightCard = ({
         </AnimatePresence>
 
         <div className="relative z-20 text-center px-4">
-          <div className="text-center group-hover/canvas-card:-translate-y-4 group-hover/canvas-card:opacity-0 transition duration-200 w-full mx-auto flex items-center justify-center">
+          <div className="text-center group-hover/canvas-card:-translate-y-4 transition duration-200 w-full mx-auto flex flex-col items-center justify-center">
             {icon}
+            <h2 className="bitcount text-white text-xl font-bold mt-4">
+              {title}
+            </h2>
           </div>
-          <h2 className="bitcount text-white text-2xl opacity-0 group-hover/canvas-card:opacity-100 relative z-10 mt-4 font-bold group-hover/canvas-card:-translate-y-2 transition duration-200">
-            {title}
-          </h2>
-          <p className="text-neutral-400 text-sm opacity-0 group-hover/canvas-card:opacity-100 relative z-10 mt-2 transition duration-200">
+          <p className="text-neutral-400 text-sm opacity-0 group-hover/canvas-card:opacity-100 relative z-10 mt-4 transition duration-200">
             {description}
           </p>
         </div>
@@ -64,7 +65,7 @@ export default function Home() {
   const highlights = [
     {
       title: t("home.highlights.aiml"),
-      description: "Deep Learning, Reinforcement Learning, Neural Networks",
+      description: t("home.highlights.aiml.description"),
       colors: [[0, 127, 255], [127, 255, 127]],
       link: "/research#aiml",
       icon: <Brain className="h-20 w-20 text-white" />,
@@ -73,19 +74,19 @@ export default function Home() {
     },
     {
       title: t("home.highlights.robotics"),
-      description: "Autonomous Systems, SLAM, Path Planning",
-      colors: [[255, 127, 0], [127, 0, 0]],
+      description: t("home.highlights.robotics.description"),
+      colors: [[255, 255, 0], [255, 200, 0]],
       link: "/robotics",
       icon: <Bot className="h-20 w-20 text-white" />,
       animationSpeed: 4,
-      containerClassName: "bg-orange-900",
+      containerClassName: "bg-yellow-900",
     },
     {
       title: t("home.highlights.webmobile"),
-      description: "Full Stack Development, Mobile Apps, Cloud Solutions",
+      description: t("home.highlights.webmobile.description"),
       colors: [[0, 0, 127], [0, 127, 255]],
       link: "/projects#webmobile",
-      icon: <Globe className="h-20 w-20 text-white" />,
+      icon: <Computer className="h-20 w-20 text-white" />,
       animationSpeed: 3.5,
       containerClassName: "bg-cyan-900",
     },
@@ -147,9 +148,12 @@ export default function Home() {
       {/* Highlights Section */}
       <section id="highlights" className="py-20 px-4 bg-black">
         <div className="max-w-7xl mx-auto">
-          <h2 className="google-sans-code text-4xl md:text-6xl font-bold text-center text-white mb-16">
-            {t("home.highlights.title")}
-          </h2>
+          <TypewriterText
+            text={t("home.highlights.title")}
+            as="h2"
+            className="google-sans-code text-4xl md:text-6xl font-bold text-center text-white mb-16"
+            speed={70}
+          />
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {highlights.map((highlight, index) => (
@@ -179,7 +183,7 @@ export default function Home() {
                 </h3>
                 <EvervaultCard text="CRYPTO" />
                 <p className="text-neutral-400 text-sm text-center mt-4">
-                  Post-Quantum Cryptography, Encryption, Security
+                  {t("home.highlights.crypto.description")}
                 </p>
               </div>
             </Link>

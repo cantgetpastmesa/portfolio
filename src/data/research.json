@@ -1,0 +1,64 @@
+{
+  "research": [
+    {
+      "id": "research-1",
+      "category": "aiml",
+      "title": {
+        "en": "Deep Reinforcement Learning for Complex Systems",
+        "es": "Aprendizaje por Refuerzo Profundo para Sistemas Complejos"
+      },
+      "abstract": {
+        "en": "This research explores the application of deep reinforcement learning algorithms to complex multi-agent systems. We propose a novel approach that combines model-based and model-free methods to achieve better sample efficiency.",
+        "es": "Esta investigación explora la aplicación de algoritmos de aprendizaje por refuerzo profundo a sistemas multi-agente complejos. Proponemos un enfoque novedoso que combina métodos basados en modelos y libres de modelos para lograr una mejor eficiencia de muestras."
+      },
+      "papers": [
+        {
+          "title": "Sample Efficiency in Multi-Agent RL",
+          "pdf": "/papers/marl-efficiency.pdf",
+          "venue": "NeurIPS 2024"
+        }
+      ],
+      "code": "https://github.com/username/marl-research"
+    },
+    {
+      "id": "research-2",
+      "category": "crypto",
+      "title": {
+        "en": "Post-Quantum Cryptography Analysis",
+        "es": "Análisis de Criptografía Post-Cuántica"
+      },
+      "abstract": {
+        "en": "Analysis and implementation of post-quantum cryptographic algorithms resistant to quantum computing attacks. Focus on lattice-based cryptography and its practical applications.",
+        "es": "Análisis e implementación de algoritmos criptográficos post-cuánticos resistentes a ataques de computación cuántica. Enfoque en criptografía basada en retículas y sus aplicaciones prácticas."
+      },
+      "papers": [
+        {
+          "title": "Lattice-Based Encryption Schemes",
+          "pdf": "/papers/lattice-crypto.pdf",
+          "venue": "Crypto 2024"
+        }
+      ],
+      "code": "https://github.com/username/pqc-research"
+    },
+    {
+      "id": "research-3",
+      "category": "robotics",
+      "title": {
+        "en": "Visual SLAM for Dynamic Environments",
+        "es": "SLAM Visual para Entornos Dinámicos"
+      },
+      "abstract": {
+        "en": "Development of robust visual SLAM algorithms that can handle dynamic environments with moving objects. Combines traditional geometric methods with deep learning for object detection and tracking.",
+        "es": "Desarrollo de algoritmos robustos de SLAM visual que pueden manejar entornos dinámicos con objetos en movimiento. Combina métodos geométricos tradicionales con aprendizaje profundo para detección y seguimiento de objetos."
+      },
+      "papers": [
+        {
+          "title": "Dynamic SLAM with Deep Learning",
+          "pdf": "/papers/dynamic-slam.pdf",
+          "venue": "ICRA 2024"
+        }
+      ],
+      "code": "https://github.com/username/dynamic-slam"
+    }
+  ]
+}
