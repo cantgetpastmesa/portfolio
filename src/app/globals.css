@@ -3,6 +3,13 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Custom brand colors */
+  --color-dark-blue: #00007F;
+  --color-cyan: #007FFF;
+  --color-green: #7FFF7F;
+  --color-orange: #FF7F00;
+  --color-dark-red: #7F0000;
 }
 
 @theme inline {
@@ -16,6 +23,13 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    
+    /* Custom brand colors remain same in dark mode */
+    --color-dark-blue: #00007F;
+    --color-cyan: #007FFF;
+    --color-green: #7FFF7F;
+    --color-orange: #FF7F00;
+    --color-dark-red: #7F0000;
   }
 }
 
