@@ -83,8 +83,8 @@ export default function AboutPage() {
         {/* Academic Timeline */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
           className="mb-20"
         >
           <div className="flex items-center gap-3 mb-12">
@@ -107,9 +107,10 @@ export default function AboutPage() {
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
+                  {...(index < 2 
+                    ? { animate: { opacity: 1, x: 0 }, transition: { delay: 0.5 + index * 0.1, duration: 0.5 } }
+                    : { whileInView: { opacity: 1, x: 0 }, viewport: { once: true, amount: 0.3 }, transition: { duration: 0.5 } }
+                  )}
                   className="relative pl-20"
                 >
                   {/* Timeline Dot */}
@@ -162,9 +163,8 @@ export default function AboutPage() {
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.7 + index * 0.05, duration: 0.4 }}
                 whileHover={{ scale: 1.05 }}
                 className="bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-6 hover:border-cyan-500/50 transition-all text-center cursor-pointer"
               >

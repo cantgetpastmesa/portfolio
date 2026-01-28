@@ -7,7 +7,7 @@ import { EncryptedText } from "@/components/ui/encrypted-text";
 import { EvervaultCard } from "@/components/ui/evervault-card";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Brain, Bot, Computer, ChevronDown } from "lucide-react";
+import { Brain, Bot, Computer, ChevronDown, Lock } from "lucide-react";
 import { TypewriterText } from "@/components/TypewriterText";
 
 const HighlightCard = ({
@@ -29,7 +29,7 @@ const HighlightCard = ({
       <div
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="border border-white/20 group/canvas-card flex items-center justify-center max-w-sm w-full mx-auto p-4 relative h-120 rounded-2xl"
+        className="border border-white/20 group/canvas-card flex items-center justify-center max-w-sm w-full mx-auto p-4 relative h-110 rounded-3xl"
       >
         <AnimatePresence>
           {hovered && (
@@ -70,7 +70,7 @@ export default function Home() {
       link: "/research#aiml",
       icon: <Brain className="h-20 w-20 text-white" />,
       animationSpeed: 3,
-      containerClassName: "bg-blue-900",
+      containerClassName: "bg-blue-900 rounded-3xl overflow-hidden",
     },
     {
       title: t("home.highlights.robotics"),
@@ -79,16 +79,16 @@ export default function Home() {
       link: "/robotics",
       icon: <Bot className="h-20 w-20 text-white" />,
       animationSpeed: 4,
-      containerClassName: "bg-yellow-900",
+      containerClassName: "bg-yellow-900 rounded-3xl overflow-hidden",
     },
     {
       title: t("home.highlights.webmobile"),
       description: t("home.highlights.webmobile.description"),
-      colors: [[0, 0, 127], [0, 127, 255]],
+      colors: [[255, 127, 0], [127, 0, 0]],
       link: "/projects#webmobile",
       icon: <Computer className="h-20 w-20 text-white" />,
       animationSpeed: 3.5,
-      containerClassName: "bg-cyan-900",
+      containerClassName: "bg-orange-900 rounded-3xl overflow-hidden",
     },
   ];
 
@@ -98,7 +98,7 @@ export default function Home() {
       <section className="h-screen relative">
         <WavyBackground className="w-full h-full flex items-center justify-center">
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <p className="google-sans-code text-2xl md:text-4xl lg:text-6xl text-white">
+            <p className="google-sans-code text-4xl md:text-6xl lg:text-6xl text-white">
               <EncryptedText
                 text="Felipe A. Mesa N."
                 encryptedClassName="text-neutral-500"
@@ -118,7 +118,7 @@ export default function Home() {
               </Link>
               <Link
                 href="#contact"
-                className="px-6 py-3 bg-linear-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-full transition-all"
+                className="px-6 py-3 bg-[#00007F] hover:bg-[#0000A0] text-white rounded-full transition-all"
               >
                 {t("home.hero.cta.contact")}
               </Link>
@@ -175,16 +175,26 @@ export default function Home() {
           </div>
 
           {/* Cryptography Card with Evervault */}
-          <div className="mt-16">
+          <div className="mt-8 flex justify-center">
             <Link href="/research#crypto">
-              <div className="max-w-md mx-auto">
-                <h3 className="bitcount text-2xl font-bold text-white text-center mb-4">
-                  {t("home.highlights.crypto")}
-                </h3>
-                <EvervaultCard text="CRYPTO" />
-                <p className="text-neutral-400 text-sm text-center mt-4">
-                  {t("home.highlights.crypto.description")}
-                </p>
+              <div
+                className="border border-white/20 group flex items-center justify-center max-w-sm w-full mx-auto p-4 relative h-96 rounded-3xl"
+              >
+                <div className="absolute inset-0 h-full w-full">
+                  <EvervaultCard text="" />
+                </div>
+
+                <div className="relative z-20 text-center px-4">
+                  <div className="text-center group-hover:-translate-y-4 transition duration-200 w-full mx-auto flex flex-col items-center justify-center">
+                    <Lock className="h-20 w-20 text-white" />
+                    <h2 className="bitcount text-white text-xl font-bold mt-4">
+                      {t("home.highlights.crypto")}
+                    </h2>
+                  </div>
+                  <p className="text-neutral-400 text-sm opacity-0 group-hover:opacity-100 relative z-10 mt-4 transition duration-200">
+                    {t("home.highlights.crypto.description")}
+                  </p>
+                </div>
               </div>
             </Link>
           </div>

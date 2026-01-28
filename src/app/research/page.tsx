@@ -20,26 +20,26 @@ const ResearchSection = ({
     <section id={id} className="mb-32 scroll-mt-32">
       <motion.div
         initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+        className="mb-12"
       >
         <TypewriterText
           text={title}
           as="h2"
-          className="google-sans-code text-4xl md:text-5xl font-bold text-white mb-12"
+          className="google-sans-code text-4xl md:text-5xl font-bold text-white"
           speed={60}
         />
       </motion.div>
 
-      <div className="space-y-12">
+      <motion.div className="space-y-12">
         {items.map((item, index) => (
           <motion.div
             key={item.id}
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
-            className="bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-all"
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 + index * 0.15, duration: 0.5 }}
+            className="bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-colors"
           >
             {/* Title */}
             <h3 className="bitcount text-2xl md:text-3xl font-bold text-white mb-4">
@@ -99,7 +99,7 @@ const ResearchSection = ({
             )}
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 

@@ -238,7 +238,7 @@ export default function ContactPage() {
 
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-linear-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold rounded-lg transition-all transform hover:scale-105"
+                className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-[#00007F] hover:bg-[#0000A0] text-white font-semibold rounded-lg transition-all transform hover:scale-105"
               >
                 <Send className="w-5 h-5" />
                 {t("contact.send")}

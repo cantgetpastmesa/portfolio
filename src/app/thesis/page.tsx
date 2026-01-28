@@ -1,6 +1,46 @@
 "use client";
 import React from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Boxes } from "@/components/ui/background-boxes";
+import { cn } from "@/lib/utils";
+import { TypewriterText } from "@/components/TypewriterText";
+
+export default function ThesisPage() {
+  const { t, language } = useLanguage();
+
+  return (
+    <div className="min-h-screen relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center pt-20">
+      <div className="absolute inset-0 w-full h-full bg-slate-900 z-20 mask-[radial-gradient(transparent,white)] pointer-events-none" />
+
+      <Boxes />
+      
+      <div className="relative z-20 text-center px-4">
+        <TypewriterText
+          text={t("thesis.title")}
+          as="h1"
+          className={cn("google-sans-code md:text-7xl text-4xl text-white font-bold mb-6")}
+          speed={80}
+        />
+        
+        <div className="inline-block px-6 py-2 bg-yellow-500/20 text-yellow-400 border border-yellow-500/50 rounded-full text-sm font-medium mb-8">
+          {t("thesis.wip")}
+        </div>
+        
+        <p className="bitcount text-center mt-4 text-neutral-300 text-xl max-w-2xl mx-auto">
+          {language === "en" 
+            ? "This page is currently under construction. Check back soon for updates on my undergraduate thesis research."
+            : "Esta página está actualmente en construcción. Vuelve pronto para actualizaciones sobre mi investigación de tesis de pregrado."}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+{/* 
+// ORIGINAL THESIS PAGE - COMMENTED OUT FOR FUTURE USE
+"use client";
+import React from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { FileText, User, Building } from "lucide-react";
 import { TypewriterText } from "@/components/TypewriterText";
@@ -11,7 +51,6 @@ export default function ThesisPage() {
   return (
     <div className="min-h-screen bg-black pt-32 pb-20 px-4">
       <div className="max-w-5xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -29,7 +68,6 @@ export default function ThesisPage() {
           </div>
         </motion.div>
 
-        {/* Thesis Info */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -67,7 +105,6 @@ export default function ThesisPage() {
           </div>
         </motion.div>
 
-        {/* PDF Viewer Placeholder */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -82,7 +119,6 @@ export default function ThesisPage() {
             </button>
           </div>
 
-          {/* PDF Viewer will go here */}
           <div className="aspect-[8.5/11] bg-neutral-800/50 rounded-lg flex items-center justify-center border border-white/10">
             <div className="text-center">
               <FileText className="w-16 h-16 text-neutral-600 mx-auto mb-4" />
@@ -94,7 +130,6 @@ export default function ThesisPage() {
           </div>
         </motion.div>
 
-        {/* Key Figures Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -117,3 +152,4 @@ export default function ThesisPage() {
     </div>
   );
 }
+*/}

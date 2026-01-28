@@ -48,9 +48,9 @@ export default function ProjectsPage() {
             <button
               key={category.id}
               onClick={() => setSelectedCategory(category.id)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
                 selectedCategory === category.id
-                  ? "bg-linear-to-r from-cyan-500 to-blue-500 text-white"
+                  ? "bg-[#00007F] text-white"
                   : "bg-white/10 text-neutral-300 hover:bg-white/20"
               }`}
             >
@@ -72,7 +72,7 @@ export default function ProjectsPage() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
-              className="group relative bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-6 hover:border-white/30 transition-all overflow-hidden"
+              className="group relative bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-6 hover:border-white/30 transition-colors overflow-hidden"
             >
               {/* Gradient Overlay on Hover */}
               <div className="absolute inset-0 bg-linear-to-br from-cyan-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -107,7 +107,7 @@ export default function ProjectsPage() {
                       href={project.links.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-sm rounded-lg transition-all"
+                      className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-sm rounded-lg transition-colors"
                       title={t("projects.viewCode")}
                     >
                       <Github className="w-4 h-4" />
@@ -119,7 +119,7 @@ export default function ProjectsPage() {
                       href={project.links.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-linear-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white text-sm rounded-lg transition-all"
+                      className="flex items-center gap-2 px-4 py-2 bg-[#00007F] hover:bg-[#0000A0] text-white text-sm rounded-lg transition-colors"
                       title={t("projects.viewLive")}
                     >
                       <ExternalLink className="w-4 h-4" />
@@ -131,7 +131,7 @@ export default function ProjectsPage() {
                       href={project.links.paper}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-sm rounded-lg transition-all"
+                      className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-sm rounded-lg transition-colors"
                       title={t("projects.viewPaper")}
                     >
                       <FileText className="w-4 h-4" />
