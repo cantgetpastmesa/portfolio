@@ -30,7 +30,7 @@ const HighlightCard = ({
       <div
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="border border-white/20 group/canvas-card flex items-center justify-center max-w-sm w-full mx-auto p-4 relative h-110 rounded-3xl"
+        className="border border-white/20 group/canvas-card flex items-center justify-center max-w-sm w-full mx-auto p-4 relative h-110 rounded-3xl bg-black"
       >
         <AnimatePresence>
           {hovered && (
@@ -46,7 +46,19 @@ const HighlightCard = ({
 
         <div className="relative z-20 text-center px-4">
           <div className="text-center group-hover/canvas-card:-translate-y-4 transition duration-200 w-full mx-auto flex flex-col items-center justify-center">
-            {icon}
+            <motion.div
+              animate={{
+                y: [0, -8, 0],
+                rotate: [0, 2, -2, 0],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              {icon}
+            </motion.div>
             <h2 className="bitcount text-white text-xl font-bold mt-4">
               {title}
             </h2>
@@ -186,7 +198,7 @@ export default function Home() {
           <div className="mt-8 flex justify-center">
             <Link href="/research#crypto">
               <div
-                className="border border-white/20 group flex items-center justify-center max-w-sm w-full mx-auto p-4 relative h-96 rounded-3xl"
+                className="border border-white/20 group flex items-center justify-center max-w-sm w-full mx-auto p-4 relative h-96 rounded-3xl bg-black"
               >
                 <div className="absolute inset-0 h-full w-full">
                   <EvervaultCard text="" />

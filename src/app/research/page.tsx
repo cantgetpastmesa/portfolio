@@ -21,15 +21,12 @@ const ResearchSection = ({
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.5, delay: 0.8 }}
         className="mb-12"
       >
-        <TypewriterText
-          text={title}
-          as="h2"
-          className="google-sans-code text-4xl md:text-5xl font-bold text-white"
-          speed={60}
-        />
+        <h2 className="google-sans-code text-4xl md:text-5xl font-bold text-white">
+          {title}
+        </h2>
       </motion.div>
 
       <motion.div className="space-y-12">

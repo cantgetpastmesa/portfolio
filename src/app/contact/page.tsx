@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { TypewriterText } from "@/components/TypewriterText";
+import { Vortex } from "@/components/ui/vortex";
 import { Mail, MapPin, Send } from "lucide-react";
 
 export default function ContactPage() {
@@ -32,7 +33,14 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-black pt-32 pb-20">
-      <div className="max-w-6xl mx-auto px-4">
+      <Vortex
+        backgroundColor="black"
+        rangeY={800}
+        particleCount={500}
+        baseHue={220}
+        className="flex items-center justify-center w-full min-h-screen px-2 md:px-10 py-4"
+      >
+        <div className="max-w-6xl mx-auto px-4 w-full">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -58,8 +66,8 @@ export default function ContactPage() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="space-y-8"
           >
+            <div className="bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-8 space-y-8">
             <div>
               <TypewriterText
                 text={language === "en" ? "Let's Connect" : "Conectémonos"}
@@ -157,6 +165,7 @@ export default function ContactPage() {
                 </a>
               </div>
             </div>
+            </div>
           </motion.div>
 
           {/* Contact Form */}
@@ -246,7 +255,8 @@ export default function ContactPage() {
             </form>
           </motion.div>
         </div>
-      </div>
+        </div>
+      </Vortex>
     </div>
   );
 }
