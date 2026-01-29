@@ -5,6 +5,7 @@ import projectsData from "@/data/projects.json";
 import { motion } from "framer-motion";
 import { Github, ExternalLink, FileText } from "lucide-react";
 import { TypewriterText } from "@/components/TypewriterText";
+import { Vortex } from "@/components/ui/vortex";
 
 type Category = "all" | "aiml" | "crypto" | "robotics" | "webmobile";
 
@@ -26,7 +27,14 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen bg-black pt-32 pb-20 px-4">
-      <div className="max-w-7xl mx-auto">
+      <Vortex
+        backgroundColor="black"
+        rangeY={800}
+        particleCount={500}
+        baseHue={220}
+        className="flex items-center justify-center w-full min-h-screen"
+      >
+        <div className="max-w-7xl mx-auto w-full">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -149,7 +157,8 @@ export default function ProjectsPage() {
             <p className="text-neutral-500 text-lg">No projects found in this category.</p>
           </div>
         )}
-      </div>
+        </div>
+      </Vortex>
     </div>
   );
 }

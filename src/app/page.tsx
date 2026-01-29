@@ -6,6 +6,7 @@ import { WavyBackground } from "@/components/ui/wavy-background";
 import { EncryptedText } from "@/components/ui/encrypted-text";
 import { EvervaultCard } from "@/components/ui/evervault-card";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
+import { Vortex } from "@/components/ui/vortex";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Brain, Bot, Computer, ChevronDown, Lock } from "lucide-react";
 import { TypewriterText } from "@/components/TypewriterText";
@@ -147,13 +148,20 @@ export default function Home() {
 
       {/* Highlights Section */}
       <section id="highlights" className="py-20 px-4 bg-black">
-        <div className="max-w-7xl mx-auto">
-          <TypewriterText
-            text={t("home.highlights.title")}
-            as="h2"
-            className="google-sans-code text-4xl md:text-6xl font-bold text-center text-white mb-16"
-            speed={70}
-          />
+        <Vortex
+          backgroundColor="black"
+          rangeY={800}
+          particleCount={500}
+          baseHue={220}
+          className="flex flex-col items-center justify-center w-full h-full"
+        >
+          <div className="max-w-7xl mx-auto">
+            <TypewriterText
+              text={t("home.highlights.title")}
+              as="h2"
+              className="google-sans-code text-4xl md:text-6xl font-bold text-center text-white mb-16"
+              speed={70}
+            />
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {highlights.map((highlight, index) => (
@@ -198,7 +206,8 @@ export default function Home() {
               </div>
             </Link>
           </div>
-        </div>
+          </div>
+        </Vortex>
       </section>
     </>
   );
