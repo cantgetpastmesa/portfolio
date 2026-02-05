@@ -30,7 +30,7 @@ export default function ProjectsPage() {
       <Vortex
         backgroundColor="black"
         rangeY={800}
-        particleCount={500}
+        particleCount={100}
         baseHue={220}
         className="flex items-center justify-center w-full min-h-screen"
       >
@@ -58,7 +58,7 @@ export default function ProjectsPage() {
               onClick={() => setSelectedCategory(category.id)}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
                 selectedCategory === category.id
-                  ? "bg-[#00007F] text-white"
+                  ? "bg-cyan-500 text-black"
                   : "bg-white/10 text-neutral-300 hover:bg-white/20"
               }`}
             >
@@ -80,11 +80,8 @@ export default function ProjectsPage() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
-              className="group relative bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-6 hover:border-white/30 transition-colors overflow-hidden"
+              className="group relative bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-6 hover:border-cyan-500/50 transition-all overflow-hidden"
             >
-              {/* Gradient Overlay on Hover */}
-              <div className="absolute inset-0 bg-linear-to-br from-cyan-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-              
               <div className="relative z-10">
                 {/* Title */}
                 <h3 className="bitcount text-2xl font-bold text-white mb-3">
@@ -127,7 +124,7 @@ export default function ProjectsPage() {
                       href={project.links.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-[#00007F] hover:bg-[#0000A0] text-white text-sm rounded-lg transition-colors"
+                      className="flex items-center gap-2 px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-black text-sm rounded-lg transition-colors font-medium"
                       title={t("projects.viewLive")}
                     >
                       <ExternalLink className="w-4 h-4" />

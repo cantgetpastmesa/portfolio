@@ -1,0 +1,106 @@
+{
+  "certifications": [
+    {
+      "id": "cert-1",
+      "title": {
+        "en": "Machine Learning Specialization",
+        "es": "Especialización en Aprendizaje Automático"
+      },
+      "issuer": "Stanford University / Coursera",
+      "date": "2023",
+      "credentialId": "ABC123XYZ",
+      "credentialUrl": "https://coursera.org/verify/ABC123XYZ",
+      "description": {
+        "en": "Completed comprehensive study of supervised learning, unsupervised learning, and best practices in machine learning",
+        "es": "Completé un estudio integral de aprendizaje supervisado, no supervisado y mejores prácticas en aprendizaje automático"
+      },
+      "skills": ["Machine Learning", "Python", "TensorFlow", "Neural Networks"],
+      "featured": true
+    },
+    {
+      "id": "cert-2",
+      "title": {
+        "en": "AWS Certified Solutions Architect",
+        "es": "AWS Arquitecto de Soluciones Certificado"
+      },
+      "issuer": "Amazon Web Services",
+      "date": "2023",
+      "credentialId": "AWS-SAA-2023-456",
+      "credentialUrl": "https://aws.amazon.com/verification",
+      "description": {
+        "en": "Demonstrated expertise in designing distributed systems on AWS",
+        "es": "Demostré experiencia en el diseño de sistemas distribuidos en AWS"
+      },
+      "skills": ["AWS", "Cloud Architecture", "DevOps", "Infrastructure"],
+      "featured": true
+    },
+    {
+      "id": "cert-3",
+      "title": {
+        "en": "Deep Learning Specialization",
+        "es": "Especialización en Aprendizaje Profundo"
+      },
+      "issuer": "DeepLearning.AI / Coursera",
+      "date": "2022",
+      "credentialId": "DL789ABC",
+      "credentialUrl": "https://coursera.org/verify/DL789ABC",
+      "description": {
+        "en": "Mastered deep learning fundamentals including CNNs, RNNs, and sequence models",
+        "es": "Dominé los fundamentos del aprendizaje profundo incluyendo CNNs, RNNs y modelos de secuencia"
+      },
+      "skills": ["Deep Learning", "CNNs", "RNNs", "PyTorch"],
+      "featured": true
+    },
+    {
+      "id": "cert-4",
+      "title": {
+        "en": "Hackathon Winner - AI Challenge 2023",
+        "es": "Ganador de Hackathon - Desafío de IA 2023"
+      },
+      "issuer": "TechCorp Hackathon",
+      "date": "2023",
+      "credentialId": "HACK2023-WINNER",
+      "credentialUrl": "#",
+      "description": {
+        "en": "1st place for developing an AI-powered solution for sustainable agriculture",
+        "es": "1er lugar por desarrollar una solución impulsada por IA para agricultura sostenible"
+      },
+      "skills": ["AI/ML", "Computer Vision", "Python", "Innovation"],
+      "featured": false
+    },
+    {
+      "id": "cert-5",
+      "title": {
+        "en": "Robotics Specialization",
+        "es": "Especialización en Robótica"
+      },
+      "issuer": "University of Pennsylvania / Coursera",
+      "date": "2022",
+      "credentialId": "ROBOT456DEF",
+      "credentialUrl": "https://coursera.org/verify/ROBOT456DEF",
+      "description": {
+        "en": "Comprehensive robotics education covering kinematics, control, and perception",
+        "es": "Educación integral en robótica cubriendo cinemática, control y percepción"
+      },
+      "skills": ["Robotics", "Control Systems", "ROS", "Computer Vision"],
+      "featured": false
+    },
+    {
+      "id": "cert-6",
+      "title": {
+        "en": "Full Stack Web Development",
+        "es": "Desarrollo Web Full Stack"
+      },
+      "issuer": "Meta / Coursera",
+      "date": "2022",
+      "credentialId": "META-FS-789",
+      "credentialUrl": "https://coursera.org/verify/META-FS-789",
+      "description": {
+        "en": "Mastered modern web development with React, Node.js, and databases",
+        "es": "Dominé el desarrollo web moderno con React, Node.js y bases de datos"
+      },
+      "skills": ["React", "Node.js", "MongoDB", "REST APIs"],
+      "featured": false
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ededed;
   
   /* Custom brand colors */
   --color-dark-blue: #00007F;
@@ -19,24 +19,16 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    
-    /* Custom brand colors remain same in dark mode */
-    --color-dark-blue: #00007F;
-    --color-cyan: #007FFF;
-    --color-green: #7FFF7F;
-    --color-orange: #FF7F00;
-    --color-dark-red: #7F0000;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Performance optimizations */
+canvas {
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .bitcount {
@@ -56,4 +48,9 @@ body {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }

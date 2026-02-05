@@ -25,6 +25,15 @@ const translations = {
     "home.hero.subtitle": "Software Engineering · Computer Science · AI & ML, Robotics Researcher",
     "home.hero.cta.projects": "View Projects",
     "home.hero.cta.contact": "Contact Me",
+    "home.about.title": "About Me",
+    "home.about.bio.p1": "I'm a Computer Science student and researcher passionate about the intersection of artificial intelligence, robotics, and software engineering. My work focuses on developing intelligent systems that can learn, adapt, and operate autonomously in complex environments.",
+    "home.about.bio.p2": "Beyond research, I'm interested in building practical applications that leverage cutting-edge AI/ML techniques. I believe in the power of technology to solve real-world problems and am committed to contributing to a future where AI systems are safe, reliable, and beneficial to society.",
+    "home.timeline.title": "My Journey",
+    "home.timeline.academic": "Academic",
+    "home.timeline.professional": "Professional",
+    "home.interests.title": "Special Interests",
+    "home.certifications.title": "Certifications & Achievements",
+    "home.certifications.viewAll": "View All Certifications",
     "home.highlights.title": "What I Do",
     "home.highlights.aiml": "AI & ML Research",
     "home.highlights.aiml.description": "Deep Learning, Reinforcement Learning, Neural Networks",
@@ -64,6 +73,15 @@ const translations = {
     "about.timeline.title": "Academic Timeline",
     "about.interests.title": "Special Interests",
     
+    // Certifications
+    "certifications.title": "Certifications & Achievements",
+    "certifications.subtitle": "A collection of my professional certifications, online courses, and hackathon achievements.",
+    "certifications.issued": "Issued by",
+    "certifications.date": "Date",
+    "certifications.credentialId": "Credential ID",
+    "certifications.viewCredential": "View Credential",
+    "certifications.skills": "Skills",
+    
     // Footer
     "footer.bio": "Software Engineer & AI/ML Researcher",
     "footer.copyright": "All rights reserved.",
@@ -95,6 +113,15 @@ const translations = {
     "home.hero.subtitle": "Ingeniería de Software · Ciencias de la Computación · Investigador en IA, ML y Robótica",
     "home.hero.cta.projects": "Ver Proyectos",
     "home.hero.cta.contact": "Contáctame",
+    "home.about.title": "Acerca de Mí",
+    "home.about.bio.p1": "Soy estudiante e investigador de Ciencias de la Computación apasionado por la intersección de la inteligencia artificial, la robótica y la ingeniería de software. Mi trabajo se centra en desarrollar sistemas inteligentes que pueden aprender, adaptarse y operar de forma autónoma en entornos complejos.",
+    "home.about.bio.p2": "Más allá de la investigación, me interesa construir aplicaciones prácticas que aprovechen técnicas de IA/ML de vanguardia. Creo en el poder de la tecnología para resolver problemas del mundo real y estoy comprometido a contribuir a un futuro donde los sistemas de IA sean seguros, confiables y beneficiosos para la sociedad.",
+    "home.timeline.title": "Mi Trayectoria",
+    "home.timeline.academic": "Académico",
+    "home.timeline.professional": "Profesional",
+    "home.interests.title": "Intereses Especiales",
+    "home.certifications.title": "Certificaciones y Logros",
+    "home.certifications.viewAll": "Ver Todas las Certificaciones",
     "home.highlights.title": "Lo Que Hago",
     "home.highlights.aiml": "Investigación en IA y ML",
     "home.highlights.aiml.description": "Aprendizaje Profundo, Aprendizaje por Refuerzo, Redes Neuronales",
@@ -133,6 +160,15 @@ const translations = {
     "about.title": "Acerca de Mí",
     "about.timeline.title": "Línea de Tiempo Académica",
     "about.interests.title": "Intereses Especiales",
+    
+    // Certifications
+    "certifications.title": "Certificaciones y Logros",
+    "certifications.subtitle": "Una colección de mis certificaciones profesionales, cursos en línea y logros en hackathons.",
+    "certifications.issued": "Emitido por",
+    "certifications.date": "Fecha",
+    "certifications.credentialId": "ID de Credencial",
+    "certifications.viewCredential": "Ver Credencial",
+    "certifications.skills": "Habilidades",
     
     // Footer
     "footer.bio": "Ingeniero de Software e Investigador en IA/ML",

@@ -36,7 +36,7 @@ const ResearchSection = ({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 + index * 0.15, duration: 0.5 }}
-            className="bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-8 hover:border-white/20 transition-colors"
+            className="bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-8 hover:border-cyan-500/50 transition-all"
           >
             {/* Title */}
             <h3 className="bitcount text-2xl md:text-3xl font-bold text-white mb-4">

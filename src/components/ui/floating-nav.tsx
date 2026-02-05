@@ -35,11 +35,12 @@ export const FloatingNav = ({
 
   const navItems = [
     { name: t("nav.home"), link: "/" },
+    { name: t("nav.about"), link: "/#about" },
     { name: t("nav.projects"), link: "/projects" },
     { name: t("nav.research"), link: "/research" },
     { name: t("nav.thesis"), link: "/thesis" },
     { name: t("nav.robotics"), link: "/robotics" },
-    { name: t("nav.about"), link: "/about" },
+    { name: "Certifications", link: "/certifications" },
     { name: t("nav.contact"), link: "/contact" },
   ];
 

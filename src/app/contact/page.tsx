@@ -36,7 +36,7 @@ export default function ContactPage() {
       <Vortex
         backgroundColor="black"
         rangeY={800}
-        particleCount={500}
+        particleCount={100}
         baseHue={220}
         className="flex items-center justify-center w-full min-h-screen px-2 md:px-10 py-4"
       >

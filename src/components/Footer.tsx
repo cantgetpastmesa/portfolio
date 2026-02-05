@@ -39,7 +39,7 @@ export const Footer = () => {
 
           {/* Social Links */}
           <div className="space-y-3">
-            <h3 className="text-lg font-semibold text-[#007FFF]">Connect</h3>
+            <h3 className="text-lg font-semibold text-cyan-500">Connect</h3>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
                 <a
@@ -47,7 +47,7 @@ export const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-[#007FFF] transition-all duration-300 transform hover:scale-110"
+                  className="text-white hover:text-cyan-500 transition-all duration-300 transform hover:scale-110"
                   aria-label={social.name}
                 >
                   <social.icon className="w-5 h-5" />
@@ -58,10 +58,10 @@ export const Footer = () => {
 
           {/* Contact */}
           <div className="space-y-3">
-            <h3 className="text-lg font-semibold text-[#007FFF]">Email</h3>
+            <h3 className="text-lg font-semibold text-cyan-500">Email</h3>
             <a
               href="mailto:your.email@example.com"
-              className="flex items-center space-x-2 text-white hover:text-[#007FFF] transition-all duration-300 text-sm group"
+              className="flex items-center space-x-2 text-white hover:text-cyan-500 transition-all duration-300 text-sm group"
             >
               <Mail className="w-4 h-4 group-hover:scale-110 transition-transform" />
               <span>your.email@example.com</span>
