@@ -81,8 +81,8 @@ export default function CertificationsPage() {
               key={cert.id}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 + index * 0.05, duration: 0.5 }}
-              className="bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-6 hover:border-cyan-500/50 transition-all group relative overflow-hidden"
+              transition={{ delay: 0.4 + index * 0.05, duration: 0.4 }}
+              className="bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-6 hover:border-cyan-500/50 transition-[border-color] group relative overflow-hidden"
             >
               {/* Featured Badge */}
               {cert.featured && (

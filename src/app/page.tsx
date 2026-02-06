@@ -418,7 +418,7 @@ export default function Home() {
                       {/* Timeline Dot */}
                       <div className="absolute left-6 top-2 w-5 h-5 rounded-full bg-cyan-500 border-4 border-black" />
 
-                      <div className="bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-6 hover:border-cyan-500/50 transition-all">
+                      <div className="bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-6 hover:border-cyan-500/50 transition-[border-color]">
                         <div className="flex items-start justify-between mb-3">
                           <div>
                             <p className="text-sm text-cyan-400 font-medium mb-1">
@@ -482,7 +482,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
-                  className="bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-6 hover:border-cyan-500/50 transition-all group"
+                  className="bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-6 hover:border-cyan-500/50 transition-[border-color] group"
                 >
                   <h3 className="bitcount text-lg font-bold text-white mb-2">
                     {cert.title[language]}
@@ -566,8 +566,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05, duration: 0.4 }}
-                  whileHover={{ scale: 1.05 }}
-                  className="bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-6 hover:border-cyan-500/50 transition-all text-center cursor-pointer"
+                  className="bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-6 hover:border-cyan-500/50 transition-[border-color] text-center cursor-pointer"
                 >
                   <div className="text-4xl mb-3">{interest.icon}</div>
                   <p className="text-white font-medium">{interest.name}</p>

@@ -78,9 +78,8 @@ export default function ProjectsPage() {
               layout
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
-              className="group relative bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-6 hover:border-cyan-500/50 transition-all overflow-hidden"
+              transition={{ duration: 0.4, delay: 0.3 + index * 0.05 }}
+              className="group relative bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-6 hover:border-cyan-500/50 transition-[border-color] overflow-hidden"
             >
               <div className="relative z-10">
                 {/* Title */}
