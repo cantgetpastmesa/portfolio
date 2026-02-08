@@ -28,7 +28,7 @@ const translations = {
     "home.about.title": "About Me",
     "home.about.bio.p1": "I'm a Computer Science student and researcher passionate about the intersection of artificial intelligence, robotics, and software engineering. My work focuses on developing intelligent systems that can learn, adapt, and operate autonomously in complex environments.",
     "home.about.bio.p2": "Beyond research, I'm interested in building practical applications that leverage cutting-edge AI/ML techniques. I believe in the power of technology to solve real-world problems and am committed to contributing to a future where AI systems are safe, reliable, and beneficial to society.",
-    "home.timeline.title": "My Journey",
+    "home.timeline.title": "Experience",
     "home.timeline.academic": "Academic",
     "home.timeline.professional": "Professional",
     "home.interests.title": "Special Interests",
