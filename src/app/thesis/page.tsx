@@ -83,7 +83,7 @@ export default function ThesisPage() {
               <User className="w-5 h-5 text-cyan-400 mt-1" />
               <div>
                 <p className="text-sm text-neutral-400">{t("thesis.supervisor")}</p>
-                <p className="text-white">Dr. [Supervisor Name]</p>
+                <p className="text-white">TBD</p>
               </div>
             </div>
 
@@ -91,7 +91,7 @@ export default function ThesisPage() {
               <Building className="w-5 h-5 text-cyan-400 mt-1" />
               <div>
                 <p className="text-sm text-neutral-400">{t("thesis.university")}</p>
-                <p className="text-white">[University Name]</p>
+                <p className="text-white">Universidad de Los Andes</p>
               </div>
             </div>
           </div>

@@ -30,9 +30,31 @@ const googleSansCode = localFont({
   fallback: ['monospace'],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yourdomain.com';
+
 export const metadata: Metadata = {
-  title: "Felipe A. Mesa N. - Portfolio",
-  description: "Portfolio de Felipe Andrés Mesa Niño",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Felipe A. Mesa N. - Portfolio",
+    template: "%s | Felipe A. Mesa N."
+  },
+  description: "Portfolio de Felipe Andrés Mesa Niño - Computer Science, AI/ML, Robotics",
+  keywords: ["portfolio", "computer science", "AI", "machine learning", "robotics", "research"],
+  authors: [{ name: "Felipe Andrés Mesa Niño" }],
+  creator: "Felipe Andrés Mesa Niño",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    title: "Felipe A. Mesa N. - Portfolio",
+    description: "Portfolio de Felipe Andrés Mesa Niño - Computer Science, AI/ML, Robotics",
+    siteName: "Felipe A. Mesa N. Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Felipe A. Mesa N. - Portfolio",
+    description: "Portfolio de Felipe Andrés Mesa Niño - Computer Science, AI/ML, Robotics",
+  },
   icons: {
     icon: [
       { url: '/favicon/favicon.ico' },

@@ -84,7 +84,7 @@ export default function Home() {
         en: "B.S. Computer Science",
         es: "Licenciatura en Ciencias de la Computación",
       },
-      institution: "[University Name]",
+      institution: "Universidad de Los Andes",
       description: {
         en: "Major in Computer Science with focus on AI/ML and Robotics",
         es: "Carrera en Ciencias de la Computación con enfoque en IA/ML y Robótica",
@@ -96,7 +96,7 @@ export default function Home() {
         en: "Research Assistant",
         es: "Asistente de Investigación",
       },
-      institution: "[Lab/Institution Name]",
+      institution: "AI Research Lab",
       description: {
         en: "Conducted research in Deep Reinforcement Learning and Multi-Agent Systems",
         es: "Realicé investigación en Aprendizaje por Refuerzo Profundo y Sistemas Multi-Agente",
@@ -111,7 +111,7 @@ export default function Home() {
         en: "Software Engineering Intern",
         es: "Practicante en Ingeniería de Software",
       },
-      institution: "[Company Name]",
+      institution: "Tech Company",
       description: {
         en: "Developed full-stack web applications and cloud infrastructure",
         es: "Desarrollé aplicaciones web full-stack e infraestructura en la nube",
