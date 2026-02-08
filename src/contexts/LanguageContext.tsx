@@ -9,6 +9,47 @@ interface LanguageContextType {
   t: (key: string) => string;
 }
 
+/**
+ * Detects the user's preferred language from the browser
+ * @returns "en" or "es" based on browser language, defaults to "en"
+ */
+const detectBrowserLanguage = (): Language => {
+  if (typeof window === "undefined") return "en";
+  
+  // Get browser language (e.g., "en-US", "es-ES", "es-419", "en-GB")
+  const browserLang = navigator.language.toLowerCase();
+  
+  // Check if it starts with "es" (Spanish)
+  if (browserLang.startsWith("es")) {
+    return "es";
+  }
+  
+  // Default to English for all other languages
+  return "en";
+};
+
+/**
+ * Gets the initial language from localStorage or browser detection
+ * Priority: localStorage > browser language > "en" default
+ */
+const getInitialLanguage = (): Language => {
+  if (typeof window === "undefined") return "en";
+  
+  try {
+    // Check localStorage first (user's previous choice)
+    const savedLang = localStorage.getItem("preferred-language");
+    if (savedLang === "en" || savedLang === "es") {
+      return savedLang;
+    }
+    
+    // If no saved preference, detect from browser
+    return detectBrowserLanguage();
+  } catch {
+    // Fallback if localStorage is not available
+    return detectBrowserLanguage();
+  }
+};
+
 const translations = {
   en: {
     // Navigation
@@ -195,7 +236,19 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
 );
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<Language>("en");
+  // Use lazy initialization to detect language on first render
+  const [language, setLanguageState] = useState<Language>(() => getInitialLanguage());
+
+  // Wrapper to save language preference to localStorage
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    try {
+      localStorage.setItem("preferred-language", lang);
+    } catch {
+      // Ignore localStorage errors
+      console.warn("Could not save language preference to localStorage");
+    }
+  };
 
   const t = (key: string): string => {
     return translations[language][key as keyof typeof translations.en] || key;

@@ -20,6 +20,13 @@ export const TypewriterText: React.FC<TypewriterTextProps> = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
 
+  // Reset state when text changes (e.g., language switch)
+  useEffect(() => {
+    setDisplayedText("");
+    setCurrentIndex(0);
+    setHasStarted(false);
+  }, [text]);
+
   useEffect(() => {
     // Start after delay
     const startTimeout = setTimeout(() => {
@@ -27,7 +34,7 @@ export const TypewriterText: React.FC<TypewriterTextProps> = ({
     }, delay);
 
     return () => clearTimeout(startTimeout);
-  }, [delay]);
+  }, [delay, text]);
 
   useEffect(() => {
     if (!hasStarted) return;
