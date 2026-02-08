@@ -1,10 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { TypewriterText } from "@/components/TypewriterText";
 import { Vortex } from "@/components/ui/vortex";
-import { Mail, MapPin, Send } from "lucide-react";
+import { Mail, MapPin, Send, Loader2, CheckCircle, XCircle } from "lucide-react";
 
 export default function ContactPage() {
   const { language, t } = useLanguage();
@@ -13,13 +13,55 @@ export default function ContactPage() {
     email: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Connect to API
-    console.log("Form submitted:", formData);
-    // Reset form
-    setFormData({ name: "", email: "", message: "" });
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: "success",
+          message:
+            language === "en"
+              ? "Message sent successfully! I'll get back to you soon."
+              : "¡Mensaje enviado con éxito! Te responderé pronto.",
+        });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setSubmitStatus({
+          type: "error",
+          message:
+            language === "en"
+              ? "Failed to send message. Please try again or email me directly."
+              : "Error al enviar el mensaje. Inténtalo de nuevo o escríbeme directamente.",
+        });
+      }
+    } catch {
+      setSubmitStatus({
+        type: "error",
+        message:
+          language === "en"
+            ? "An error occurred. Please try again later."
+            : "Ocurrió un error. Por favor, inténtalo más tarde.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -245,12 +287,45 @@ export default function ContactPage() {
                 />
               </div>
 
+              {/* Status Message */}
+              <AnimatePresence mode="wait">
+                {submitStatus.type && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className={`flex items-center gap-3 p-4 rounded-lg ${
+                      submitStatus.type === "success"
+                        ? "bg-green-500/10 border border-green-500/50 text-green-400"
+                        : "bg-red-500/10 border border-red-500/50 text-red-400"
+                    }`}
+                  >
+                    {submitStatus.type === "success" ? (
+                      <CheckCircle className="w-5 h-5 shrink-0" />
+                    ) : (
+                      <XCircle className="w-5 h-5 shrink-0" />
+                    )}
+                    <p className="text-sm">{submitStatus.message}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-[#00007F] hover:bg-[#0000A0] text-white font-semibold rounded-lg transition-all transform hover:scale-105"
+                disabled={isSubmitting}
+                className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-cyan-500 hover:bg-cyan-600 disabled:bg-neutral-700 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition-all transform hover:scale-105 disabled:transform-none disabled:hover:scale-100"
               >
-                <Send className="w-5 h-5" />
-                {t("contact.send")}
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    {language === "en" ? "Sending..." : "Enviando..."}
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" />
+                    {t("contact.send")}
+                  </>
+                )}
               </button>
             </form>
           </motion.div>
