@@ -19,6 +19,7 @@ const translations = {
     "nav.about": "About",
     "nav.contact": "Contact",
     "nav.robotics": "Robotics",
+    "nav.certifications":"Certifications",
     
     // Home
     "home.hero.title": "Felipe A. Mesa N.",
@@ -107,6 +108,7 @@ const translations = {
     "nav.about": "Acerca",
     "nav.contact": "Contacto",
     "nav.robotics": "Robótica",
+    "nav.certifications":"Certificaciones",
     
     // Home
     "home.hero.title": "Felipe A. Mesa N.",
