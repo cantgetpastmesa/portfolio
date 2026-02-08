@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import projectsData from "@/data/projects.json";
 import { motion } from "framer-motion";
-import { Github, ExternalLink, FileText } from "lucide-react";
+import { ExternalLink, FileText } from "lucide-react";
+import { GithubIcon } from "@/components/icons/BrandIcons";
 import { TypewriterText } from "@/components/TypewriterText";
 import { Vortex } from "@/components/ui/vortex";
 
@@ -114,7 +115,7 @@ export default function ProjectsPage() {
                       className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-sm rounded-lg transition-colors"
                       title={t("projects.viewCode")}
                     >
-                      <Github className="w-4 h-4" />
+                      <GithubIcon className="w-4 h-4" />
                       <span>Code</span>
                     </a>
                   )}

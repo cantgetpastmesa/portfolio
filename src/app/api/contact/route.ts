@@ -92,7 +92,7 @@ export async function POST(request: NextRequest) {
     const sanitizedMessage = sanitizeHtml(message.trim());
 
     // Parse recipients (supports comma-separated emails)
-    const recipients = (process.env.CONTACT_EMAIL_TO || 'your.email@example.com')
+    const recipients = (process.env.CONTACT_EMAIL_TO || 'f.mesan@uniandes.edu.co')
       .split(',')
       .map(email => email.trim())
       .filter(email => email.length > 0);

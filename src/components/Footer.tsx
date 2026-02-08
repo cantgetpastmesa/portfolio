@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Github, Linkedin, Mail, Instagram } from "lucide-react";
+import { Mail } from "lucide-react";
+import { GithubIcon, LinkedinIcon, InstagramIcon } from "@/components/icons/BrandIcons";
 
 export const Footer = () => {
   const { t } = useLanguage();
@@ -11,17 +12,17 @@ export const Footer = () => {
     { 
       name: "GitHub", 
       url: "https://github.com/cantgetpastmesa", 
-      icon: Github 
+      icon: GithubIcon 
     },
     { 
       name: "LinkedIn", 
-      url: "https://linkedin.com/in/yourprofile", 
-      icon: Linkedin 
+      url: "https://linkedin.com/in/felipe-a-mesa-n", 
+      icon: LinkedinIcon 
     },
     { 
       name: "Instagram", 
       url: "https://instagram.com/yourprofile", 
-      icon: Instagram 
+      icon: InstagramIcon 
     },
   ];
 
@@ -60,11 +61,11 @@ export const Footer = () => {
           <div className="space-y-3">
             <h3 className="text-lg font-semibold text-cyan-500">Email</h3>
             <a
-              href="mailto:your.email@example.com"
+              href="mailto:f.mesan@uniandes.edu.co"
               className="flex items-center space-x-2 text-white hover:text-cyan-500 transition-all duration-300 text-sm group"
             >
               <Mail className="w-4 h-4 group-hover:scale-110 transition-transform" />
-              <span>your.email@example.com</span>
+              <span>f.mesan@uniandes.edu.co</span>
             </a>
           </div>
         </div>

@@ -134,10 +134,10 @@ export default function ContactPage() {
                     Email
                   </h3>
                   <a
-                    href="mailto:your.email@example.com"
+                    href="mailto:f.mesan@uniandes.edu.co"
                     className="text-cyan-400 hover:text-cyan-300 transition-colors"
                   >
-                    your.email@example.com
+                    f.mesan@uniandes.edu.co
                   </a>
                 </div>
               </div>
@@ -164,7 +164,7 @@ export default function ContactPage() {
               </h3>
               <div className="flex gap-4">
                 <a
-                  href="https://github.com/yourusername"
+                  href="https://github.com/cantgetpastmesa"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-white/5 hover:bg-white/10 rounded-lg border border-white/10 hover:border-cyan-500/50 transition-all"
@@ -178,7 +178,7 @@ export default function ContactPage() {
                   </svg>
                 </a>
                 <a
-                  href="https://linkedin.com/in/yourusername"
+                  href="https://linkedin.com/in/felipe-a-mesa-n"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-white/5 hover:bg-white/10 rounded-lg border border-white/10 hover:border-cyan-500/50 transition-all"

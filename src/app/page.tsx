@@ -197,7 +197,7 @@ export default function Home() {
                 {t("home.hero.cta.projects")}
               </Link>
               <Link
-                href="#contact"
+                href="/contact"
                 className="px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-black rounded-full transition-all font-medium"
               >
                 {t("home.hero.cta.contact")}

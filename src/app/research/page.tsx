@@ -3,7 +3,8 @@ import React from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import researchData from "@/data/research.json";
 import { motion } from "framer-motion";
-import { Github, FileText, ExternalLink } from "lucide-react";
+import { FileText, ExternalLink } from "lucide-react";
+import { GithubIcon } from "@/components/icons/BrandIcons";
 import { TypewriterText } from "@/components/TypewriterText";
 
 const ResearchSection = ({ 
@@ -91,7 +92,7 @@ const ResearchSection = ({
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-all"
               >
-                <Github className="w-5 h-5" />
+                <GithubIcon className="w-5 h-5" />
                 <span>View Code</span>
               </a>
             )}
