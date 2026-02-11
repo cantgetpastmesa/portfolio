@@ -60,7 +60,7 @@ export default function CertificationsPage() {
                 : "bg-white/10 text-white hover:bg-white/20"
             }`}
           >
-            All
+            {t("certifications.allButton")}
           </button>
           <button
             onClick={() => setFilter("featured")}
@@ -70,7 +70,7 @@ export default function CertificationsPage() {
                 : "bg-white/10 text-white hover:bg-white/20"
             }`}
           >
-            Featured
+            {t("certifications.featuredButton")}
           </button>
         </motion.div>
 
@@ -87,7 +87,7 @@ export default function CertificationsPage() {
               {/* Featured Badge */}
               {cert.featured && (
                 <div className="absolute top-4 right-4 bg-cyan-500 text-black px-3 py-1 rounded-full text-xs font-bold">
-                  Featured
+                  {t("certifications.featuredTag")}
                 </div>
               )}
 
@@ -167,7 +167,7 @@ export default function CertificationsPage() {
           >
             <Award className="w-20 h-20 text-neutral-700 mx-auto mb-4" />
             <p className="text-neutral-500 text-lg">
-              No certifications found in this category.
+              {t("certifications.noCerts")}
             </p>
           </motion.div>
         )}

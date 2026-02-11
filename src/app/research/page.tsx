@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import researchData from "@/data/research.json";
 import { motion } from "framer-motion";
@@ -11,12 +10,14 @@ const ResearchSection = ({
     title, 
     items, 
     id,
-    language 
+    language,
+    t
   }: { 
     title: string; 
     items: typeof researchData.research; 
     id: string;
     language: "en" | "es";
+    t: (key: string) => string;
   }) => (
     <section id={id} className="mb-32 scroll-mt-32">
       <motion.div
@@ -53,7 +54,7 @@ const ResearchSection = ({
             {/* Papers */}
             {item.papers && item.papers.length > 0 && (
               <div className="mb-6">
-                <h4 className="bitcount text-lg font-semibold text-white mb-3">Publications</h4>
+                <h4 className="bitcount text-lg font-semibold text-white mb-3">{t("research.publications")}</h4>
                 <div className="space-y-3">
                   {item.papers.map((paper, i) => (
                     <div
@@ -128,7 +129,7 @@ export default function ResearchPage() {
             speed={80}
           />
           <p className="text-xl text-neutral-400 max-w-2xl mx-auto">
-            Exploring frontiers in AI, Cryptography, and Robotics
+            {t("research.subtitle")}
           </p>
         </motion.div>
 
@@ -138,6 +139,7 @@ export default function ResearchPage() {
           title={t("research.aiml.title")}
           items={researchByCategory.aiml}
           language={language}
+          t={t}
         />
 
         <ResearchSection
@@ -145,6 +147,7 @@ export default function ResearchPage() {
           title={t("research.crypto.title")}
           items={researchByCategory.crypto}
           language={language}
+          t={t}
         />
 
         <ResearchSection
@@ -152,6 +155,7 @@ export default function ResearchPage() {
           title={t("research.robotics.title")}
           items={researchByCategory.robotics}
           language={language}
+          t={t}
         />
       </div>
     </div>

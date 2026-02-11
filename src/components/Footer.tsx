@@ -34,7 +34,7 @@ export const Footer = () => {
       es: "Todos los derechos reservados.",},
     connect: {
       en: "Let's connect",
-      es: "Conectemos",},}
+      es: "Conectémos",},}
 ;
   return (
     <footer className="relative w-full overflow-hidden border-t border-white/10 py-12 bg-[#00007F]">

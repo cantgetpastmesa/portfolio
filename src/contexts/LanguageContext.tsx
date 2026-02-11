@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 type Language = "en" | "es";
 
@@ -99,9 +99,11 @@ const translations = {
     
     // Research
     "research.title": "Research",
+    "research.subtitle": "Exploring frontiers in AI, Cryptography, and Robotics",
     "research.aiml.title": "Artificial Intelligence & Machine Learning",
     "research.crypto.title": "Cryptography",
     "research.robotics.title": "Robotics",
+    "research.publications": "Publications",
     
     // Thesis
     "thesis.title": "Undergraduate Thesis",
@@ -123,6 +125,10 @@ const translations = {
     "certifications.credentialId": "Credential ID",
     "certifications.viewCredential": "View Credential",
     "certifications.skills": "Skills",
+    "certifications.allButton": "All",
+    "certifications.featuredTag": "Featured",
+    "certifications.featuredButton": "Featured",
+    "certifications.noCerts": "No certifications found in this category.",
     
     // Contact
     "contact.title": "Get In Touch",
@@ -184,10 +190,12 @@ const translations = {
     
     // Research
     "research.title": "Investigación",
+    "research.subtitle": "Explorando las fronteras de la IA, criptografía y robótica",
     "research.aiml.title": "Inteligencia artificial y aprendizaje automático",
     "research.crypto.title": "Criptografía",
     "research.robotics.title": "Robótica",
-    
+    "research.publications": "Publicaciones",
+
     // Thesis
     "thesis.title": "Tesis de pregrado",
     "thesis.wip": "Trabajo en progreso",
@@ -208,6 +216,10 @@ const translations = {
     "certifications.credentialId": "ID de la credencial",
     "certifications.viewCredential": "Ver credencial",
     "certifications.skills": "Habilidades",
+    "certifications.allButton": "Todas",
+    "certifications.featuredTag": "Destacada",
+    "certifications.featuredButton": "Destacadas",
+    "certifications.noCerts": "No se encontraron certificaciones para esta categoría.",
     
     // Contact
     "contact.title": "Ponte en Contacto",
@@ -228,8 +240,16 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
 );
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  // Use lazy initialization to detect language on first render
-  const [language, setLanguageState] = useState<Language>(() => getInitialLanguage());
+  // Initialize with "en" to ensure SSR/client consistency
+  const [language, setLanguageState] = useState<Language>("en");
+
+  // After hydration, detect and apply user's language preference
+  useEffect(() => {
+    const detectedLang = getInitialLanguage();
+    if (detectedLang !== "en") {
+      setLanguageState(detectedLang);
+    }
+  }, []);
 
   // Wrapper to save language preference to localStorage
   const setLanguage = (lang: Language) => {
@@ -237,7 +257,6 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     try {
       localStorage.setItem("preferred-language", lang);
     } catch {
-      // Ignore localStorage errors
       console.warn("Could not save language preference to localStorage");
     }
   };
