@@ -1,11 +1,10 @@
 "use client";
-import React from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Mail } from "lucide-react";
-import { GithubIcon, LinkedinIcon, InstagramIcon } from "@/components/icons/BrandIcons";
+import { GithubIcon, LinkedinIcon} from "@/components/icons/BrandIcons";
 
 export const Footer = () => {
-  const { t } = useLanguage();
+  const { language } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
@@ -19,13 +18,24 @@ export const Footer = () => {
       url: "https://linkedin.com/in/felipe-a-mesa-n", 
       icon: LinkedinIcon 
     },
-    { 
-      name: "Instagram", 
-      url: "https://instagram.com/yourprofile", 
-      icon: InstagramIcon 
-    },
   ];
 
+  const displayedText =
+    { 
+      bio1: {
+      en: "Software Engineer & AI/ML Researcher",
+      es: "Ingeniero de Sistemas y Computación",
+    },
+    bio2: {
+      en: "Minor in Machine Learning",
+      es: "Opción en Machine Learning",},
+    copyright: {
+      en: "All rights reserved.",
+      es: "Todos los derechos reservados.",},
+    connect: {
+      en: "Let's connect",
+      es: "Conectemos",},}
+;
   return (
     <footer className="relative w-full overflow-hidden border-t border-white/10 py-12 bg-[#00007F]">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,13 +44,16 @@ export const Footer = () => {
           <div className="space-y-3">
             <h3 className="text-xl font-bold text-white">Felipe A. Mesa N.</h3>
             <p className="text-sm text-white/80">
-              {t("footer.bio")}
+              {displayedText.bio1[language]}
+            </p>
+            <p className="text-sm text-white/80">
+              {displayedText.bio2[language]}
             </p>
           </div>
 
           {/* Social Links */}
           <div className="space-y-3">
-            <h3 className="text-lg font-semibold text-cyan-500">Connect</h3>
+            <h3 className="text-lg font-semibold text-cyan-500">{displayedText.connect[language]}</h3>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
                 <a
@@ -73,7 +86,7 @@ export const Footer = () => {
         {/* Copyright */}
         <div className="mt-12 pt-8 border-t border-white/10 text-center">
           <p className="text-sm text-white/60">
-            © {currentYear} Felipe A. Mesa N. {t("footer.copyright")}
+            © {currentYear} Felipe A. Mesa N. {displayedText.copyright[language]}
           </p>
         </div>
       </div>

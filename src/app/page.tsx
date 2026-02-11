@@ -8,7 +8,18 @@ import { EvervaultCard } from "@/components/ui/evervault-card";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import { Vortex } from "@/components/ui/vortex";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Brain, Bot, Computer, ChevronDown, Lock, GraduationCap, Briefcase, Sparkles, Award, ExternalLink } from "lucide-react";
+import {
+  Brain,
+  Bot,
+  Computer,
+  ChevronDown,
+  Lock,
+  GraduationCap,
+  Briefcase,
+  Sparkles,
+  Award,
+  ExternalLink,
+} from "lucide-react";
 import { TypewriterText } from "@/components/TypewriterText";
 import certificationsData from "@/data/certifications.json";
 
@@ -75,7 +86,9 @@ const HighlightCard = ({
 
 export default function Home() {
   const { t, language } = useLanguage();
-  const [timelineView, setTimelineView] = React.useState<"academic" | "professional">("academic");
+  const [timelineView, setTimelineView] = React.useState<
+    "academic" | "professional"
+  >("academic");
 
   const academicTimeline = [
     {
@@ -132,21 +145,62 @@ export default function Home() {
   ];
 
   const interests = [
-    { name: "AI Safety", icon: "🛡️" },
-    { name: "Robotics", icon: "🤖" },
-    { name: "Cryptography", icon: "🔐" },
-    { name: "Machine Learning", icon: "🧠" },
-    { name: "Web Development", icon: "💻" },
-    { name: "Entrepreneurship", icon: "🚀" },
+    {
+      name: {
+        en: "AI Safety",
+        es: "Seguridad de la IA",
+      },
+      icon: "🛡️",
+    },
+    {
+      name: {
+        en: "Robotics",
+        es: "Robótica",
+      },
+      icon: "🤖",
+    },
+    {
+      name: {
+        en: "Cryptography",
+        es: "Criptografía",
+      },
+      icon: "🔐",
+    },
+    {
+      name: {
+        en: "Machine Learning",
+        es: "Aprendizaje automático",
+      },
+      icon: "🧠",
+    },
+    {
+      name: {
+        en: "Mobile & Web Development",
+        es: "Desarrollo de aplicaciones móviles y web",
+      },
+      icon: "💻",
+    },
+    {
+      name: {
+        en: "Entrepreneurship",
+        es: "Emprendimiento",
+      },
+      icon: "🚀",
+    },
   ];
 
-  const featuredCertifications = certificationsData.certifications.filter(cert => cert.featured);
+  const featuredCertifications = certificationsData.certifications.filter(
+    (cert) => cert.featured,
+  );
 
   const highlights = [
     {
       title: t("home.highlights.aiml"),
       description: t("home.highlights.aiml.description"),
-      colors: [[0, 127, 255], [127, 255, 127]],
+      colors: [
+        [0, 127, 255],
+        [127, 255, 127],
+      ],
       link: "/research#aiml",
       icon: <Brain className="h-20 w-20 text-white" />,
       animationSpeed: 3,
@@ -155,7 +209,10 @@ export default function Home() {
     {
       title: t("home.highlights.robotics"),
       description: t("home.highlights.robotics.description"),
-      colors: [[255, 255, 0], [255, 200, 0]],
+      colors: [
+        [255, 255, 0],
+        [255, 200, 0],
+      ],
       link: "/robotics",
       icon: <Bot className="h-20 w-20 text-white" />,
       animationSpeed: 4,
@@ -164,7 +221,10 @@ export default function Home() {
     {
       title: t("home.highlights.webmobile"),
       description: t("home.highlights.webmobile.description"),
-      colors: [[255, 127, 0], [127, 0, 0]],
+      colors: [
+        [255, 127, 0],
+        [127, 0, 0],
+      ],
       link: "/projects#webmobile",
       icon: <Computer className="h-20 w-20 text-white" />,
       animationSpeed: 3.5,
@@ -205,7 +265,7 @@ export default function Home() {
             </div>
           </div>
         </WavyBackground>
-        
+
         {/* Animated Scroll Down Arrow */}
         <motion.div
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer z-50"
@@ -218,7 +278,9 @@ export default function Home() {
             ease: "easeInOut",
           }}
           onClick={() => {
-            document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+            document
+              .getElementById("about")
+              ?.scrollIntoView({ behavior: "smooth" });
           }}
         >
           <ChevronDown className="w-8 h-8 text-white/80 hover:text-white transition-colors" />
@@ -289,7 +351,7 @@ export default function Home() {
               className="google-sans-code text-4xl md:text-6xl font-bold text-center text-white mb-16"
               speed={70}
             />
-          
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
               {highlights.map((highlight, index) => (
                 <HighlightCard
@@ -312,9 +374,7 @@ export default function Home() {
             {/* Cryptography Card with Evervault */}
             <div className="mt-8 flex justify-center">
               <Link href="/research#crypto">
-                <div
-                  className="border border-white/20 group flex items-center justify-center max-w-sm w-full mx-auto p-4 relative h-96 rounded-3xl bg-black"
-                >
+                <div className="border border-white/20 group flex items-center justify-center max-w-sm w-full mx-auto p-4 relative h-96 rounded-3xl bg-black">
                   <div className="absolute inset-0 h-full w-full">
                     <EvervaultCard text="" />
                   </div>
@@ -334,7 +394,6 @@ export default function Home() {
               </Link>
             </div>
           </motion.div>
-
         </div>
       </section>
 
@@ -407,7 +466,10 @@ export default function Home() {
                 <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-linear-to-b from-cyan-500 via-blue-500 to-transparent" />
 
                 <div className="space-y-8">
-                  {(timelineView === "academic" ? academicTimeline : professionalTimeline).map((item, index) => (
+                  {(timelineView === "academic"
+                    ? academicTimeline
+                    : professionalTimeline
+                  ).map((item, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, x: -30 }}
@@ -442,7 +504,6 @@ export default function Home() {
               </motion.div>
             </AnimatePresence>
           </motion.div>
-
         </div>
       </section>
 
@@ -526,7 +587,6 @@ export default function Home() {
               </Link>
             </div>
           </motion.div>
-
         </div>
       </section>
 
@@ -569,7 +629,7 @@ export default function Home() {
                   className="bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-6 hover:border-cyan-500/50 transition-[border-color] text-center cursor-pointer"
                 >
                   <div className="text-4xl mb-3">{interest.icon}</div>
-                  <p className="text-white font-medium">{interest.name}</p>
+                  <p className="text-white font-medium">{interest.name[language]}</p>
                 </motion.div>
               ))}
             </div>

@@ -124,10 +124,6 @@ const translations = {
     "certifications.viewCredential": "View Credential",
     "certifications.skills": "Skills",
     
-    // Footer
-    "footer.bio": "Software Engineer & AI/ML Researcher",
-    "footer.copyright": "All rights reserved.",
-    
     // Contact
     "contact.title": "Get In Touch",
     "contact.subtitle": "Have a project in mind or want to collaborate? Feel free to reach out!",
@@ -154,26 +150,26 @@ const translations = {
     // Home
     "home.hero.title": "Felipe A. Mesa N.",
     "home.hero.subtitle": "Ingeniería de Software · Ciencias de la Computación · Investigador en IA, ML y Robótica",
-    "home.hero.cta.projects": "Ver Proyectos",
+    "home.hero.cta.projects": "Ver proyectos",
     "home.hero.cta.contact": "Contáctame",
     "home.about.title": "Acerca de Mí",
     "home.about.bio.p1": "Soy estudiante e investigador de Ciencias de la Computación apasionado por la intersección de la inteligencia artificial, la robótica y la ingeniería de software. Mi trabajo se centra en desarrollar sistemas inteligentes que pueden aprender, adaptarse y operar de forma autónoma en entornos complejos.",
     "home.about.bio.p2": "Más allá de la investigación, me interesa construir aplicaciones prácticas que aprovechen técnicas de IA/ML de vanguardia. Creo en el poder de la tecnología para resolver problemas del mundo real y estoy comprometido a contribuir a un futuro donde los sistemas de IA sean seguros, confiables y beneficiosos para la sociedad.",
-    "home.timeline.title": "Mi Trayectoria",
+    "home.timeline.title": "Mi trayectoria",
     "home.timeline.academic": "Académico",
     "home.timeline.professional": "Profesional",
-    "home.interests.title": "Intereses Especiales",
-    "home.certifications.title": "Certificaciones y Logros",
-    "home.certifications.viewAll": "Ver Todas las Certificaciones",
-    "home.highlights.title": "Lo Que Hago",
+    "home.interests.title": "Intereses especiales",
+    "home.certifications.title": "Certificaciones y logros",
+    "home.certifications.viewAll": "Ver todas las certificaciones",
+    "home.highlights.title": "Lo que hago",
     "home.highlights.aiml": "Investigación en IA y ML",
-    "home.highlights.aiml.description": "Aprendizaje Profundo, Aprendizaje por Refuerzo, Redes Neuronales",
+    "home.highlights.aiml.description": "Aprendizaje profundo, aprendizaje por refuerzo, redes neuronales",
     "home.highlights.robotics": "Robótica",
     "home.highlights.robotics.description": "Sistemas Autónomos, SLAM, Planificación de Rutas",
     "home.highlights.crypto": "Criptografía",
-    "home.highlights.crypto.description": "Criptografía Post-Cuántica, Encriptación, Seguridad",
-    "home.highlights.webmobile": "Aplicaciones Web y Móviles",
-    "home.highlights.webmobile.description": "Desarrollo Full Stack, Aplicaciones Móviles, Soluciones en la Nube",
+    "home.highlights.crypto.description": "Criptografía post-cuántica, cifrado, seguridad",
+    "home.highlights.webmobile": "Aplicaciones web y móviles",
+    "home.highlights.webmobile.description": "Desarrollo Full Stack, aplicaciones móviles, soluciones en la nube",
     
     // Projects
     "projects.title": "Proyectos",
@@ -181,47 +177,43 @@ const translations = {
     "projects.filter.aiml": "IA / ML / RL",
     "projects.filter.crypto": "Criptografía",
     "projects.filter.robotics": "Robótica",
-    "projects.filter.webmobile": "Aplicaciones Web y Móviles",
-    "projects.viewCode": "Ver Código",
-    "projects.viewLive": "Demo en Vivo",
-    "projects.viewPaper": "Ver Artículo",
+    "projects.filter.webmobile": "Aplicaciones web y móviles",
+    "projects.viewCode": "Ver código",
+    "projects.viewLive": "Demo en vivo",
+    "projects.viewPaper": "Ver artículo",
     
     // Research
     "research.title": "Investigación",
-    "research.aiml.title": "Inteligencia Artificial y Aprendizaje Automático",
+    "research.aiml.title": "Inteligencia artificial y aprendizaje automático",
     "research.crypto.title": "Criptografía",
     "research.robotics.title": "Robótica",
     
     // Thesis
-    "thesis.title": "Tesis de Pregrado",
-    "thesis.wip": "Trabajo en Progreso",
+    "thesis.title": "Tesis de pregrado",
+    "thesis.wip": "Trabajo en progreso",
     "thesis.supervisor": "Supervisor",
     "thesis.university": "Universidad",
-    "thesis.viewPdf": "Ver Tesis Completa",
+    "thesis.viewPdf": "Ver tesis completa",
     
     // About
     "about.title": "Acerca de Mí",
-    "about.timeline.title": "Línea de Tiempo Académica",
-    "about.interests.title": "Intereses Especiales",
+    "about.timeline.title": "Línea de tiempo académica",
+    "about.interests.title": "Intereses especiales",
     
     // Certifications
     "certifications.title": "Certificaciones y Logros",
     "certifications.subtitle": "Una colección de mis certificaciones profesionales, cursos en línea y logros en hackathons.",
     "certifications.issued": "Emitido por",
     "certifications.date": "Fecha",
-    "certifications.credentialId": "ID de Credencial",
-    "certifications.viewCredential": "Ver Credencial",
+    "certifications.credentialId": "ID de la credencial",
+    "certifications.viewCredential": "Ver credencial",
     "certifications.skills": "Habilidades",
-    
-    // Footer
-    "footer.bio": "Ingeniero de Software e Investigador en IA/ML",
-    "footer.copyright": "Todos los derechos reservados.",
     
     // Contact
     "contact.title": "Ponte en Contacto",
     "contact.subtitle": "¿Tienes un proyecto en mente o quieres colaborar? ¡No dudes en contactarme!",
     "contact.name": "Nombre",
-    "contact.email": "Correo Electrónico",
+    "contact.email": "Correo electrónico",
     "contact.message": "Mensaje",
     "contact.send": "Enviar Mensaje",
     "contact.connect": "Conectémonos",
