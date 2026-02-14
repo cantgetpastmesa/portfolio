@@ -91,28 +91,40 @@ export default function Home() {
   >("academic");
 
   const academicTimeline = [
-    {
-      year: "2021 - Present",
+      {
+      year: "2022 - Present",
       title: {
-        en: "B.S. Computer Science",
-        es: "Licenciatura en Ciencias de la Computación",
+        en: "B.S. Electronic Engineering",
+        es: "Ingeniería Electrónica",
       },
       institution: "Universidad de Los Andes",
       description: {
-        en: "Major in Computer Science with focus on AI/ML and Robotics",
-        es: "Carrera en Ciencias de la Computación con enfoque en IA/ML y Robótica",
+        en: "Major in Electronic Engineering",
+        es: "Pregrado en Ingeniería Electrónica",
       },
     },
     {
-      year: "2023",
+      year: "2023 - Present",
       title: {
-        en: "Research Assistant",
-        es: "Asistente de Investigación",
+        en: "B.S. Computer Science & Software Engineering",
+        es: "Ingeniería de Sistemas y Computación",
       },
-      institution: "AI Research Lab",
+      institution: "Universidad de Los Andes",
       description: {
-        en: "Conducted research in Deep Reinforcement Learning and Multi-Agent Systems",
-        es: "Realicé investigación en Aprendizaje por Refuerzo Profundo y Sistemas Multi-Agente",
+        en: "Major in Computer Science & Software Engineering with focus in ML/AI and Robotics.",
+        es: "Pregrado en Ingeniería de Sistemas y Computación con enfoque en ML/IA y robótica.",
+      },
+    },
+    {
+      year: "2024",
+      title: {
+        en: "Minor in Machine Learning",
+        es: "Opción en Machine Learning (aprendizaje automático)",
+      },
+      institution: "Universidad de los Andes",
+      description: {
+        en: "Specialized in identifying opportunities for ML applications, designing solutions using appropriate ML techniques, and evaluating AI systems with an ethical and socially responsible approach",
+        es: "Especializado en identificar oportunidades para aplicaciones de ML, diseñar soluciones usando técnicas apropiadas de ML, y evaluar sistemas de IA con un enfoque ético y socialmente responsable",
       },
     },
   ];
@@ -147,10 +159,10 @@ export default function Home() {
   const interests = [
     {
       name: {
-        en: "AI Safety",
-        es: "Seguridad de la IA",
+        en: "Hardware",
+        es: "Hardware",
       },
-      icon: "🛡️",
+      icon: "🛰️",
     },
     {
       name: {
