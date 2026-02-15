@@ -44,6 +44,21 @@ export const FloatingNav = ({
     { name: t("nav.contact"), link: "/contact" },
   ];
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: string) => {
+    // Check if it's a hash link on the current page
+    if (link.startsWith("/#")) {
+      e.preventDefault();
+      const hash = link.substring(2); // Remove "/#" to get the id
+      const element = document.getElementById(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+        setMobileMenuOpen(false); // Close mobile menu if open
+      }
+    } else {
+      setMobileMenuOpen(false); // Close mobile menu for other links
+    }
+  };
+
   return (
     <>
       {/* Desktop Navigation */}
@@ -64,6 +79,7 @@ export const FloatingNav = ({
                 <Link
                   key={`nav-${idx}`}
                   href={item.link}
+                  onClick={(e) => handleNavClick(e, item.link)}
                   className={cn(
                     "relative text-neutral-50 hover:text-neutral-300 transition-colors text-sm font-medium"
                   )}
@@ -150,7 +166,7 @@ export const FloatingNav = ({
                   >
                     <Link
                       href={item.link}
-                      onClick={() => setMobileMenuOpen(false)}
+                      onClick={(e) => handleNavClick(e, item.link)}
                       className="relative block text-neutral-50 hover:text-neutral-300 transition-colors text-lg font-medium py-2"
                     >
                       <span className="block">{item.name}</span>

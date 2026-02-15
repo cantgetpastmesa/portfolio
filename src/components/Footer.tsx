@@ -8,6 +8,18 @@ export const Footer = () => {
   const { language, t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // Check if it's a hash link on the current page
+    if (href.startsWith("/#")) {
+      e.preventDefault();
+      const hash = href.substring(2); // Remove "/#" to get the id
+      const element = document.getElementById(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  };
+
   const socialLinks = [
     { 
       name: "GitHub", 
@@ -102,6 +114,7 @@ export const Footer = () => {
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="text-white hover:text-cyan-500 transition-colors font-medium text-base"
               >
                 {link.name}

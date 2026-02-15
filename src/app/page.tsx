@@ -9,7 +9,7 @@ import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import { Vortex } from "@/components/ui/vortex";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
-  Brain,
+  BrainCircuit,
   Bot,
   Computer,
   ChevronDown,
@@ -19,6 +19,9 @@ import {
   Sparkles,
   Award,
   ExternalLink,
+  Cpu,
+  Rocket,
+  Smartphone,
 } from "lucide-react";
 import { TypewriterText } from "@/components/TypewriterText";
 import certificationsData from "@/data/certifications.json";
@@ -104,7 +107,7 @@ export default function Home() {
       },
     },
     {
-      year: "2023 - Present",
+      year: "2022 - Present",
       title: {
         en: "B.S. Computer Science & Software Engineering",
         es: "Ingeniería de Sistemas y Computación",
@@ -116,7 +119,7 @@ export default function Home() {
       },
     },
     {
-      year: "2024",
+      year: "2024 - 2026",
       title: {
         en: "Minor in Machine Learning",
         es: "Opción en Machine Learning (aprendizaje automático)",
@@ -162,42 +165,42 @@ export default function Home() {
         en: "Hardware",
         es: "Hardware",
       },
-      icon: "🛰️",
+      icon: <Cpu className="h-10 w-10 text-cyan-400 mx-auto" />,
     },
     {
       name: {
         en: "Robotics",
         es: "Robótica",
       },
-      icon: "🤖",
+      icon: <Bot className="h-10 w-10 text-cyan-400 mx-auto" />,
     },
     {
       name: {
         en: "Cryptography",
         es: "Criptografía",
       },
-      icon: "🔐",
+      icon: <Lock className="h-10 w-10 text-cyan-400 mx-auto" />,
     },
     {
       name: {
         en: "Machine Learning",
         es: "Aprendizaje automático",
       },
-      icon: "🧠",
+      icon: <BrainCircuit className="h-10 w-10 text-cyan-400 mx-auto" />,
     },
     {
       name: {
         en: "Mobile & Web Development",
         es: "Desarrollo de aplicaciones móviles y web",
       },
-      icon: "💻",
+      icon: <Smartphone className="h-10 w-10 text-cyan-400 mx-auto" />,
     },
     {
       name: {
         en: "Entrepreneurship",
         es: "Emprendimiento",
       },
-      icon: "🚀",
+      icon: <Rocket className="h-10 w-10 text-cyan-400 mx-auto" />,
     },
   ];
 
@@ -214,7 +217,7 @@ export default function Home() {
         [127, 255, 127],
       ],
       link: "/research#aiml",
-      icon: <Brain className="h-20 w-20 text-white" />,
+      icon: <BrainCircuit className="h-20 w-20 text-white" />,
       animationSpeed: 3,
       containerClassName: "bg-blue-900 rounded-3xl overflow-hidden",
     },
@@ -640,7 +643,7 @@ export default function Home() {
                   transition={{ delay: index * 0.05, duration: 0.4 }}
                   className="bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-6 hover:border-cyan-500/50 transition-[border-color] text-center cursor-pointer"
                 >
-                  <div className="text-4xl mb-3">{interest.icon}</div>
+                  <div className="mb-3">{interest.icon}</div>
                   <p className="text-white font-medium">{interest.name[language]}</p>
                 </motion.div>
               ))}
