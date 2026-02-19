@@ -5,6 +5,7 @@ import "./globals.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { FloatingNav } from "@/components/ui/floating-nav";
 import { Footer } from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,7 +31,7 @@ const googleSansCode = localFont({
   fallback: ['monospace'],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yourdomain.com';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://felipemesa.dev';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -85,6 +86,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
