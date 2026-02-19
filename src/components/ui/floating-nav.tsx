@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 
 export const FloatingNav = ({
   className,
@@ -96,29 +96,46 @@ export const FloatingNav = ({
               {/* Language Switcher */}
               <button
                 onClick={() => setLanguage(language === "en" ? "es" : "en")}
-                className="ml-4 px-3 py-1 text-xs font-medium text-neutral-50 hover:text-neutral-300 border border-white/20 rounded-full hover:border-white/40 transition-all"
+                className="ml-4 px-3 py-1.5 text-xs font-medium text-neutral-50 hover:text-neutral-300 border border-white/20 rounded-full hover:border-white/40 transition-all inline-flex items-center gap-1.5"
               >
-                {language === "en" ? "ES" : "EN"}
+                <Globe className="w-3.5 h-3.5" />
+                <span className="relative top-[1px]">{language === "en" ? "ES" : "EN"}</span>
               </button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Mobile Hamburger Button */}
+      {/* Mobile Hamburger Button and Language Button */}
       <AnimatePresence mode="wait">
         {visible && (
-          <motion.button
-            initial={{ opacity: 0, y: -100 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -100, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            whileTap={{ scale: 0.95 }}
-            className="md:hidden fixed top-10 right-4 z-50 p-3 backdrop-blur-md bg-black/20 border border-white/10 rounded-full shadow-lg"
-          >
-            <Menu className="w-6 h-6 text-neutral-50" />
-          </motion.button>
+          <div className="md:hidden fixed top-10 right-4 z-50 flex items-center gap-2">
+            {/* Language Button */}
+            <motion.button
+              initial={{ opacity: 0, y: -100 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -100, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setLanguage(language === "en" ? "es" : "en")}
+              whileTap={{ scale: 0.95 }}
+              className="p-3 backdrop-blur-md bg-black/20 border border-white/10 rounded-full shadow-lg"
+            >
+              <Globe className="w-6 h-6 text-neutral-50" />
+            </motion.button>
+            
+            {/* Hamburger Menu Button */}
+            <motion.button
+              initial={{ opacity: 0, y: -100 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -100, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              whileTap={{ scale: 0.95 }}
+              className="p-3 backdrop-blur-md bg-black/20 border border-white/10 rounded-full shadow-lg"
+            >
+              <Menu className="w-6 h-6 text-neutral-50" />
+            </motion.button>
+          </div>
         )}
       </AnimatePresence>
 
@@ -184,9 +201,10 @@ export const FloatingNav = ({
               <div className="px-6 mt-auto">
                 <button
                   onClick={() => setLanguage(language === "en" ? "es" : "en")}
-                  className="w-full px-4 py-2 text-sm font-medium text-neutral-50 hover:text-neutral-300 border border-white/20 rounded-full hover:border-white/40 transition-all"
+                  className="w-full px-4 py-2 text-sm font-medium text-neutral-50 hover:text-neutral-300 border border-white/20 rounded-full hover:border-white/40 transition-all flex items-center justify-center gap-2"
                 >
-                  {language === "en" ? "ES" : "EN"}
+                  <Globe className="w-4 h-4" />
+                  {language === "en" ? "Cambiar a español" : "Switch to English"}
                 </button>
               </div>
             </div>
