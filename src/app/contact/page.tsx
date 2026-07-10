@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { TypewriterText } from "@/components/TypewriterText";
 import { Vortex } from "@/components/ui/vortex";
 import { Mail, MapPin, Send, Loader2, CheckCircle, XCircle } from "lucide-react";

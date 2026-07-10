@@ -1,7 +1,7 @@
 "use client";
 import { useLanguage } from "@/contexts/LanguageContext";
 import researchData from "@/data/research.json";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { FileText, ExternalLink } from "lucide-react";
 import { GithubIcon } from "@/components/icons/BrandIcons";
 import { TypewriterText } from "@/components/TypewriterText";

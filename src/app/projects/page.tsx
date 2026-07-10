@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import projectsData from "@/data/projects.json";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { ExternalLink, FileText } from "lucide-react";
 import { GithubIcon } from "@/components/icons/BrandIcons";
 import { TypewriterText } from "@/components/TypewriterText";

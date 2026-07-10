@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Award, ExternalLink, Calendar, FileCheck } from "lucide-react";
 import { TypewriterText } from "@/components/TypewriterText";
 import { Vortex } from "@/components/ui/vortex";

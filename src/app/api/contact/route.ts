@@ -1,8 +1,6 @@
 import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 // Simple in-memory rate limiting (for production, use Redis or Vercel KV)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
 const RATE_LIMIT_REQUESTS = 3; // Max 3 requests
@@ -37,6 +35,14 @@ function sanitizeHtml(text: string): string {
 
 export async function POST(request: NextRequest) {
   try {
+    if (!process.env.RESEND_API_KEY) {
+      return NextResponse.json(
+        { error: 'Email service is not configured.' },
+        { status: 503 }
+      );
+    }
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
     // Rate limiting
     const ip = request.headers.get('x-forwarded-for') || 
                request.headers.get('x-real-ip') || 

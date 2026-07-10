@@ -41,7 +41,7 @@ export default function ThesisPage() {
 "use client";
 import React from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { FileText, User, Building } from "lucide-react";
 import { TypewriterText } from "@/components/TypewriterText";
 

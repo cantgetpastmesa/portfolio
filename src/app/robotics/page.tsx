@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { GithubIcon, InstagramIcon } from "@/components/icons/BrandIcons";
 import { TypewriterText } from "@/components/TypewriterText";
