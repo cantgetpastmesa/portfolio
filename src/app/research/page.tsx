@@ -1,162 +1,98 @@
 "use client";
+import React from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import researchData from "@/data/research.json";
-import { motion } from "motion/react";
-import { FileText, ExternalLink } from "lucide-react";
+import { ScrambleText } from "@/components/ui/ScrambleText";
 import { GithubIcon } from "@/components/icons/BrandIcons";
-import { TypewriterText } from "@/components/TypewriterText";
+import { FileText } from "lucide-react";
+import { HudLabel, Panel, SectionHeader } from "@/components/ui/terminal";
 
-const ResearchSection = ({ 
-    title, 
-    items, 
-    id,
-    language,
-    t
-  }: { 
-    title: string; 
-    items: typeof researchData.research; 
-    id: string;
-    language: "en" | "es";
-    t: (key: string) => string;
-  }) => (
-    <section id={id} className="mb-32 scroll-mt-32">
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, delay: 0.8 }}
-        className="mb-12"
-      >
-        <h2 className="google-sans-code text-4xl md:text-5xl font-bold text-white">
-          {title}
-        </h2>
-      </motion.div>
-
-      <motion.div className="space-y-12">
-        {items.map((item, index) => (
-          <motion.div
-            key={item.id}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1, duration: 0.4 }}
-            className="bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-8 hover:border-cyan-500/50 transition-[border-color]"
-          >
-            {/* Title */}
-            <h3 className="bitcount text-2xl md:text-3xl font-bold text-white mb-4">
-              {item.title[language]}
-            </h3>
-
-            {/* Abstract */}
-            <p className="text-neutral-300 text-base leading-relaxed mb-6">
-              {item.abstract[language]}
-            </p>
-
-            {/* Papers */}
-            {item.papers && item.papers.length > 0 && (
-              <div className="mb-6">
-                <h4 className="bitcount text-lg font-semibold text-white mb-3">{t("research.publications")}</h4>
-                <div className="space-y-3">
-                  {item.papers.map((paper, i) => (
-                    <div
-                      key={i}
-                      className="flex items-start gap-3 p-4 bg-white/5 rounded-lg border border-white/10"
-                    >
-                      <FileText className="w-5 h-5 text-cyan-400 mt-1 shrink-0" />
-                      <div className="flex-1">
-                        <p className="text-white font-medium">{paper.title}</p>
-                        {paper.venue && (
-                          <p className="text-sm text-neutral-400 mt-1">{paper.venue}</p>
-                        )}
-                      </div>
-                      {paper.pdf && (
-                        <a
-                          href={paper.pdf}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-3 py-1 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 text-sm rounded-lg transition-all flex items-center gap-2"
-                        >
-                          <ExternalLink className="w-3 h-3" />
-                          PDF
-                        </a>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Code Link */}
-            {item.code && (
-              <a
-                href={item.code}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-all"
-              >
-                <GithubIcon className="w-5 h-5" />
-                <span>View Code</span>
-              </a>
-            )}
-          </motion.div>
-        ))}
-      </motion.div>
-    </section>
-  );
+const CATEGORIES = [
+  { id: "aiml", index: "01", title: { en: "AI & Machine Learning", es: "IA y Machine Learning" } },
+  { id: "robotics", index: "02", title: { en: "Robotics", es: "Robótica" } },
+  { id: "crypto", index: "03", title: { en: "Cryptography", es: "Criptografía" } },
+] as const;
 
 export default function ResearchPage() {
-  const { language, t } = useLanguage();
-
-  const researchByCategory = {
-    aiml: researchData.research.filter(r => r.category === "aiml"),
-    crypto: researchData.research.filter(r => r.category === "crypto"),
-    robotics: researchData.research.filter(r => r.category === "robotics"),
-  };
+  const { language } = useLanguage();
 
   return (
-    <div className="min-h-screen bg-black pt-32 pb-20 px-4">
-      <div className="max-w-5xl mx-auto">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-20"
-        >
-          <TypewriterText
-            text={t("research.title")}
-            as="h1"
-            className="google-sans-code text-5xl md:text-7xl font-bold text-white mb-6"
-            speed={80}
-          />
-          <p className="text-xl text-neutral-400 max-w-2xl mx-auto">
-            {t("research.subtitle")}
-          </p>
-        </motion.div>
-
-        {/* Research Sections */}
-        <ResearchSection
-          id="aiml"
-          title={t("research.aiml.title")}
-          items={researchByCategory.aiml}
-          language={language}
-          t={t}
+    <div
+      className="relative min-h-screen pb-24 pt-32"
+      style={{ "--accent": "var(--depth-0)" } as React.CSSProperties}
+    >
+      <div className="grid-backdrop absolute inset-0" aria-hidden />
+      <div className="relative mx-auto max-w-7xl px-4 md:px-6">
+        <HudLabel>$ cat ./research/index.md</HudLabel>
+        <ScrambleText
+          text={language === "en" ? "RESEARCH" : "INVESTIGACIÓN"}
+          as="h1"
+          className="bitcount mt-3 block text-4xl text-foreground md:text-6xl"
         />
+        <p className="mt-4 max-w-2xl text-sm text-muted">
+          {language === "en"
+            ? "Open research lines I'm developing during my degrees. Publications will be linked here as they materialize — the thesis has its own page."
+            : "Líneas de investigación abiertas que desarrollo durante mis carreras. Las publicaciones se enlazarán aquí a medida que se materialicen — la tesis tiene su propia página."}
+        </p>
 
-        <ResearchSection
-          id="crypto"
-          title={t("research.crypto.title")}
-          items={researchByCategory.crypto}
-          language={language}
-          t={t}
-        />
-
-        <ResearchSection
-          id="robotics"
-          title={t("research.robotics.title")}
-          items={researchByCategory.robotics}
-          language={language}
-          t={t}
-        />
+        <div className="mt-16 space-y-20">
+          {CATEGORIES.map((cat) => {
+            const items = researchData.research.filter((r) => r.category === cat.id);
+            if (items.length === 0) return null;
+            return (
+              <section key={cat.id} id={cat.id} className="scroll-mt-24">
+                <SectionHeader index={cat.index} title={cat.title[language]} />
+                <div className="space-y-4">
+                  {items.map((item) => (
+                    <Panel key={item.id} className="p-6 md:p-8">
+                      <div className="mono mb-3 flex items-center justify-between gap-4 text-[11px] uppercase tracking-[0.2em]">
+                        <span className="text-muted">{item.id}</span>
+                        {item.placeholder && (
+                          <span className="text-accent">
+                            [{language === "en" ? "OPEN LINE" : "LÍNEA ABIERTA"}]
+                          </span>
+                        )}
+                      </div>
+                      <h3 className="mono text-xl font-bold text-foreground md:text-2xl">
+                        {item.title[language]}
+                      </h3>
+                      <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted">
+                        {item.abstract[language]}
+                      </p>
+                      {(item.papers.length > 0 || item.code) && (
+                        <div className="mono mt-6 flex flex-wrap gap-4 border-t border-line pt-4 text-xs">
+                          {item.papers.map((paper: { title: string; pdf: string; venue?: string }) => (
+                            <a
+                              key={paper.pdf}
+                              href={paper.pdf}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 text-muted transition-colors hover:text-accent"
+                            >
+                              <FileText className="h-4 w-4" />
+                              {paper.title}
+                              {paper.venue ? ` — ${paper.venue}` : ""}
+                            </a>
+                          ))}
+                          {item.code && (
+                            <a
+                              href={item.code}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 text-muted transition-colors hover:text-accent"
+                            >
+                              <GithubIcon className="h-4 w-4" /> CODE
+                            </a>
+                          )}
+                        </div>
+                      )}
+                    </Panel>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

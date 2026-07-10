@@ -1,287 +1,230 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "motion/react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { motion, AnimatePresence } from "motion/react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { GithubIcon, InstagramIcon } from "@/components/icons/BrandIcons";
-import { TypewriterText } from "@/components/TypewriterText";
+import { AsciiCanvas } from "@/components/ascii/AsciiCanvas";
+import { dataStream } from "@/components/ascii/programs";
+import { InstagramEmbed } from "@/components/InstagramEmbed";
+import { Corners, HudLabel, Panel, SectionHeader, Tag } from "@/components/ui/terminal";
+import { machines, presidencyLog, teamStats, instagramPosts } from "@/data/robotics";
+
+const fadeIn = {
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-80px" },
+  transition: { duration: 0.5 },
+};
 
 export default function RoboticsPage() {
   const { language } = useLanguage();
-  const [selectedProject, setSelectedProject] = useState(0);
-
-  const roboticsProjects = [
-    {
-      title: {
-        en: "Autonomous Navigation Robot",
-        es: "Robot de Navegación Autónoma",
-      },
-      description: {
-        en: "Mobile robot capable of autonomous navigation using SLAM and path planning algorithms. Equipped with LiDAR and camera sensors for environment perception.",
-        es: "Robot móvil capaz de navegación autónoma usando SLAM y algoritmos de planificación de rutas. Equipado con sensores LiDAR y cámara para percepción del entorno.",
-      },
-      technologies: ["ROS", "Python", "C++", "OpenCV", "PCL"],
-      images: [
-        "/robots/robot1-1.jpg",
-        "/robots/robot1-2.jpg",
-        "/robots/robot1-3.jpg",
-      ],
-      videos: ["https://instagram.com/p/example1"],
-      github: "https://github.com/username/autonomous-nav",
-    },
-    {
-      title: {
-        en: "Robotic Arm with Vision",
-        es: "Brazo Robótico con Visión",
-      },
-      description: {
-        en: "6-DOF robotic arm with computer vision for object detection and manipulation. Implements inverse kinematics and trajectory planning.",
-        es: "Brazo robótico de 6 grados de libertad con visión por computadora para detección y manipulación de objetos. Implementa cinemática inversa y planificación de trayectorias.",
-      },
-      technologies: ["ROS", "MoveIt", "OpenCV", "TensorFlow", "Arduino"],
-      images: [
-        "/robots/robot2-1.jpg",
-        "/robots/robot2-2.jpg",
-      ],
-      videos: ["https://instagram.com/p/example2"],
-      github: "https://github.com/username/robotic-arm",
-    },
-  ];
-
-  const currentProject = roboticsProjects[selectedProject];
+  const stream = React.useMemo(() => dataStream({ gap: 4 }), []);
 
   return (
-    <div className="min-h-screen bg-black pt-32 pb-20">
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-16 px-4"
-      >
-        <TypewriterText
-          text={language === "en" ? "Robotics" : "Robótica"}
-          as="h1"
-          className="google-sans-code text-5xl md:text-7xl font-bold text-white mb-6"
-          speed={80}
-        />
-        <p className="text-xl text-neutral-400 max-w-2xl mx-auto">
-          {language === "en"
-            ? "Building intelligent machines that interact with the physical world"
-            : "Construyendo máquinas inteligentes que interactúan con el mundo físico"
-          }
-        </p>
-      </motion.div>
-
-      {/* Project Selector */}
-      <div className="max-w-7xl mx-auto px-4 mb-8">
-        <div className="flex items-center justify-center gap-4">
-          <button
-            onClick={() => setSelectedProject((selectedProject - 1 + roboticsProjects.length) % roboticsProjects.length)}
-            className="p-3 bg-white/10 hover:bg-white/20 rounded-full transition-all"
-          >
-            <ChevronLeft className="w-6 h-6 text-white" />
-          </button>
-          
-          <div className="flex gap-3">
-            {roboticsProjects.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setSelectedProject(index)}
-                className={`h-2 rounded-full transition-all ${
-                  selectedProject === index 
-                    ? "w-12 bg-cyan-500" 
-                    : "w-2 bg-white/30 hover:bg-white/50"
-                }`}
-              />
-            ))}
-          </div>
-
-          <button
-            onClick={() => setSelectedProject((selectedProject + 1) % roboticsProjects.length)}
-            className="p-3 bg-white/10 hover:bg-white/20 rounded-full transition-all"
-          >
-            <ChevronRight className="w-6 h-6 text-white" />
-          </button>
+    <div
+      className="min-h-screen"
+      style={{ "--accent": "var(--robocol)" } as React.CSSProperties}
+    >
+      {/* ── HERO ─────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden border-b border-line">
+        <div className="absolute inset-0 opacity-60" aria-hidden>
+          <AsciiCanvas program={stream} fontSize={13} />
         </div>
-      </div>
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/60 to-[#050505]" aria-hidden />
 
-      {/* Main Content */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={selectedProject}
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -100 }}
-          transition={{ duration: 0.3 }}
-          className="max-w-7xl mx-auto px-4"
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Image Gallery */}
-            <div className="space-y-4">
-              <div className="aspect-video bg-neutral-900 rounded-2xl overflow-hidden border border-white/10">
-                {/* Placeholder for main image */}
-                <div className="w-full h-full flex items-center justify-center text-neutral-600">
-                  <p>Image Gallery Placeholder</p>
-                  <p className="text-sm mt-2">Add your robot images here</p>
-                </div>
-              </div>
+        <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-36 md:px-6">
+          <HudLabel>
+            {language === "en" ? "UNIANDES ROBOTICS TEAM" : "EQUIPO DE ROBÓTICA UNIANDES"}
+          </HudLabel>
+          <div className="mt-6 max-w-3xl">
+            <Image
+              src="/robocol/wordmark-white.png"
+              alt="ROBOCOL"
+              width={1892}
+              height={396}
+              priority
+              className="h-auto w-full max-w-xl"
+            />
+          </div>
+          <div className="mt-6 h-1 w-40 bg-accent" aria-hidden />
+          <p className="mono mt-6 max-w-2xl text-sm leading-relaxed text-foreground/85 md:text-base">
+            {language === "en"
+              ? "Rovers for simulated Mars terrain. ROVs for underwater missions. UAVs for autonomous flight. I serve as president of the team — this is where the machines live."
+              : "Rovers para terreno marciano simulado. ROVs para misiones submarinas. UAVs para vuelo autónomo. Soy el presidente del equipo — aquí es donde viven las máquinas."}
+          </p>
 
-              {/* Thumbnail Grid */}
-              <div className="grid grid-cols-3 gap-4">
-                {currentProject.images.map((_, i) => (
-                  <div
-                    key={i}
-                    className="aspect-video bg-neutral-900 rounded-lg border border-white/10 flex items-center justify-center text-neutral-700 text-xs"
-                  >
-                    Img {i + 1}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Project Info */}
-            <div className="space-y-6">
-              <div>
-                <h2 className="bitcount text-4xl font-bold text-white mb-4">
-                  {currentProject.title[language]}
-                </h2>
-                <p className="text-neutral-300 leading-relaxed text-lg">
-                  {currentProject.description[language]}
+          {/* HUD stat strip */}
+          <div className="mt-12 grid grid-cols-2 gap-px border border-line bg-line md:grid-cols-4">
+            {teamStats.map((s, i) => (
+              <div key={i} className="bg-[#050505] p-4">
+                <p className="bitcount text-2xl text-accent">{s.value}</p>
+                <p className="mono mt-1 text-[10px] uppercase tracking-[0.2em] text-muted">
+                  {s.label[language]}
                 </p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              {/* Technologies */}
-              <div>
-                <h3 className="bitcount text-xl font-semibold text-white mb-3">
-                  {language === "en" ? "Technologies" : "Tecnologías"}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {currentProject.technologies.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="px-4 py-2 bg-linear-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 rounded-lg border border-cyan-500/30 text-sm font-medium"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+      {/* ── 01 MACHINES ──────────────────────────────────────── */}
+      <motion.section {...fadeIn} className="mx-auto max-w-7xl px-4 py-20 md:px-6">
+        <SectionHeader
+          index="01"
+          title={language === "en" ? "The Machines" : "Las Máquinas"}
+          meta="$ ls ./fleet --technical-sheets"
+        />
+        <div className="space-y-16">
+          {machines.map((m, i) => (
+            <div
+              key={m.id}
+              className={`grid items-stretch gap-6 lg:grid-cols-2 ${i % 2 === 1 ? "lg:[direction:rtl]" : ""}`}
+            >
+              {/* Print sheet with the technical drawing */}
+              <div className="[direction:ltr]">
+                <Panel className="relative overflow-hidden bg-[#f2f2ec] p-0">
+                  <div className="relative aspect-[16/10]">
+                    <Image
+                      src={m.image}
+                      alt={`${m.name} — ${m.class[language]}`}
+                      fill
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                      className="object-contain p-4"
+                    />
+                  </div>
+                  <div className="mono flex items-center justify-between border-t border-black/15 px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-black/60">
+                    <span>{m.figure}</span>
+                    <span>ROBOCOL — {m.name}</span>
+                    <span>SCALE N/A</span>
+                  </div>
+                </Panel>
+              </div>
+
+              {/* Spec sheet */}
+              <div className="[direction:ltr] flex flex-col justify-center space-y-5">
+                <div>
+                  <p className="mono text-xs uppercase tracking-[0.25em] text-muted">{m.class[language]}</p>
+                  <h3 className="bitcount mt-1 text-3xl text-foreground md:text-4xl">
+                    <span className="text-accent">/</span>
+                    {m.name}
+                  </h3>
                 </div>
-              </div>
-
-              {/* Links */}
-              <div className="flex gap-4 pt-4">
-                {currentProject.github && (
-                  <a
-                    href={currentProject.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-all"
-                  >
-                    <GithubIcon className="w-5 h-5" />
-                    <span>GitHub</span>
-                  </a>
-                )}
-                {currentProject.videos.length > 0 && (
-                  <a
-                    href={currentProject.videos[0]}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 bg-linear-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white rounded-lg transition-all"
-                  >
-                    <InstagramIcon className="w-5 h-5" />
-                    <span>Instagram</span>
-                  </a>
-                )}
-              </div>
-
-              {/* Embedded Instagram Posts */}
-              <div className="pt-6">
-                <h3 className="bitcount text-xl font-semibold text-white mb-4">
-                  {language === "en" ? "Videos & Demos" : "Videos y Demostraciones"}
-                </h3>
-                <div className="space-y-4">
-                  {currentProject.videos.map((video, i) => (
+                <p className="max-w-xl text-sm leading-relaxed text-foreground/80">
+                  {m.description[language]}
+                </p>
+                <div className="max-w-xl border border-line">
+                  {m.specs.map((s, j) => (
                     <div
-                      key={i}
-                      className="aspect-video bg-neutral-900 rounded-lg border border-white/10 flex items-center justify-center text-neutral-600"
+                      key={j}
+                      className="mono grid grid-cols-[130px_1fr] gap-4 border-b border-line px-4 py-2 text-xs last:border-b-0"
                     >
-                      <div className="text-center">
-                        <InstagramIcon className="w-12 h-12 mx-auto mb-2" />
-                        <p className="text-sm">Instagram embed: {video}</p>
-                      </div>
+                      <span className="uppercase tracking-wider text-muted">{s.label[language]}</span>
+                      <span className="text-foreground">{s.value}</span>
                     </div>
                   ))}
                 </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  {m.stack.map((t) => (
+                    <Tag key={t}>{t}</Tag>
+                  ))}
+                  {m.competition && <Tag accent>{m.competition}</Tag>}
+                </div>
               </div>
             </div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
+          ))}
+        </div>
+      </motion.section>
 
-      {/* Additional Content Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="max-w-7xl mx-auto px-4 mt-24"
-      >
-        <TypewriterText
-          text={language === "en" ? "Technical Details" : "Detalles Técnicos"}
-          as="h2"
-          className="google-sans-code text-4xl font-bold text-white mb-12 text-center"
-          speed={60}
-          delay={200}
+      {/* ── 02 COMMAND LOG (presidency) ──────────────────────── */}
+      <motion.section {...fadeIn} className="mx-auto max-w-7xl px-4 py-20 md:px-6">
+        <SectionHeader
+          index="02"
+          title={language === "en" ? "Command Log" : "Bitácora de Mando"}
+          meta="$ tail -f presidency.log"
         />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-8">
-            <h3 className="bitcount text-2xl font-bold text-white mb-4">
-              {language === "en" ? "Hardware" : "Hardware"}
-            </h3>
-            <ul className="space-y-3 text-neutral-300">
-              <li className="flex items-start gap-2">
-                <span className="text-cyan-400 mt-1">•</span>
-                <span>Raspberry Pi 4 / Jetson Nano</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-cyan-400 mt-1">•</span>
-                <span>LiDAR Sensor (RPLIDAR A1/A2)</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-cyan-400 mt-1">•</span>
-                <span>Intel RealSense Camera</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-cyan-400 mt-1">•</span>
-                <span>Motor Controllers & Encoders</span>
-              </li>
-            </ul>
-          </div>
-
-          <div className="bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-8">
-            <h3 className="bitcount text-2xl font-bold text-white mb-4">
-              {language === "en" ? "Software" : "Software"}
-            </h3>
-            <ul className="space-y-3 text-neutral-300">
-              <li className="flex items-start gap-2">
-                <span className="text-cyan-400 mt-1">•</span>
-                <span>ROS (Robot Operating System)</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-cyan-400 mt-1">•</span>
-                <span>SLAM Algorithms (GMapping, Cartographer)</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-cyan-400 mt-1">•</span>
-                <span>Navigation Stack (move_base)</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-cyan-400 mt-1">•</span>
-                <span>Computer Vision (OpenCV, TensorFlow)</span>
-              </li>
-            </ul>
+        <div className="grid gap-8 lg:grid-cols-[1fr_2fr]">
+          <Panel className="h-fit p-6">
+            <HudLabel>{language === "en" ? "ROLE" : "CARGO"}</HudLabel>
+            <p className="bitcount mt-2 text-2xl text-accent">
+              {language === "en" ? "PRESIDENT" : "PRESIDENTE"}
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-foreground/80">
+              {language === "en"
+                ? "Leading ROBOCOL means running an engineering org inside a university: budgets, sponsors, recruiting, and shipping three vehicle programs a year with a volunteer team."
+                : "Liderar ROBOCOL significa dirigir una organización de ingeniería dentro de una universidad: presupuestos, patrocinadores, reclutamiento y sacar adelante tres programas de vehículos al año con un equipo de voluntarios."}
+            </p>
+          </Panel>
+          <div className="space-y-px">
+            {presidencyLog.map((e, i) => (
+              <div
+                key={i}
+                className="grid gap-2 border border-line bg-[#0a0a08]/60 p-5 md:grid-cols-[110px_1fr] md:gap-6"
+              >
+                <span className="mono text-xs tracking-wider text-accent">{e.date}</span>
+                <div>
+                  <p className="mono text-sm font-bold text-foreground">{e.title[language]}</p>
+                  <p className="mt-2 text-xs leading-relaxed text-muted">{e.body[language]}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </motion.div>
+      </motion.section>
+
+      {/* ── 03 FIELD FEED (Instagram) ────────────────────────── */}
+      <motion.section {...fadeIn} className="mx-auto max-w-7xl px-4 py-20 md:px-6">
+        <SectionHeader
+          index="03"
+          title={language === "en" ? "Field Feed" : "Desde el Campo"}
+          meta="$ curl instagram --embed"
+        />
+        {instagramPosts.length > 0 ? (
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {instagramPosts.map((url) => (
+              <Panel key={url} className="overflow-hidden p-0">
+                <InstagramEmbed url={url} />
+              </Panel>
+            ))}
+          </div>
+        ) : (
+          <div className="relative border border-dashed border-line p-10 text-center">
+            <Corners />
+            <p className="mono text-sm text-muted">
+              <span className="text-accent">[FEED OFFLINE]</span>{" "}
+              {language === "en"
+                ? "Drop Instagram post URLs into src/data/robotics.ts → instagramPosts to embed builds, competitions and lab moments here."
+                : "Agrega URLs de posts de Instagram en src/data/robotics.ts → instagramPosts para incrustar construcciones, competencias y momentos del laboratorio aquí."}
+            </p>
+          </div>
+        )}
+      </motion.section>
+
+      {/* ── CTA ──────────────────────────────────────────────── */}
+      <section className="mx-auto max-w-7xl px-4 pb-24 md:px-6">
+        <div className="relative border border-line bg-[#0a0a08]/60 p-10 text-center">
+          <Corners />
+          <p className="mono text-lg font-bold text-foreground md:text-xl">
+            {language === "en"
+              ? "Want the ML side of the story?"
+              : "¿Quieres el lado de ML de la historia?"}
+          </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <Link
+              href="/research"
+              className="mono inline-block bg-accent px-5 py-2.5 text-xs font-bold uppercase tracking-[0.2em] text-black transition-[filter] hover:brightness-110"
+            >
+              {language === "en" ? "Research →" : "Investigación →"}
+            </Link>
+            <Link
+              href="/thesis"
+              className="mono inline-block border border-line px-5 py-2.5 text-xs uppercase tracking-[0.2em] text-foreground transition-colors hover:border-accent hover:text-accent"
+            >
+              {language === "en" ? "Thesis" : "Tesis"}
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

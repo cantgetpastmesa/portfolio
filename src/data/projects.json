@@ -1,4 +1,5 @@
 {
+  "_note": "Set placeholder:false and add real links when a project is ready to show. Placeholder entries render as IN-PROGRESS without links.",
   "projects": [
     {
       "id": "project-1",
@@ -7,16 +8,13 @@
         "es": "Proyecto de Investigación en IA"
       },
       "description": {
-        "en": "Advanced machine learning research project focusing on reinforcement learning algorithms.",
-        "es": "Proyecto de investigación avanzada en aprendizaje automático enfocado en algoritmos de aprendizaje por refuerzo."
+        "en": "Machine learning research focused on reinforcement learning algorithms.",
+        "es": "Investigación en aprendizaje automático enfocada en algoritmos de aprendizaje por refuerzo."
       },
       "category": "aiml",
-      "techStack": ["Python", "TensorFlow", "PyTorch", "OpenAI Gym"],
-      "links": {
-        "github": "https://github.com/username/project",
-        "live": "",
-        "paper": "/papers/project1.pdf"
-      },
+      "techStack": ["Python", "PyTorch", "Gymnasium"],
+      "links": { "github": "", "live": "", "paper": "" },
+      "placeholder": true,
       "featured": true
     },
     {
@@ -31,11 +29,8 @@
       },
       "category": "crypto",
       "techStack": ["Python", "C++", "OpenSSL"],
-      "links": {
-        "github": "https://github.com/username/crypto-lib",
-        "live": "",
-        "paper": "/papers/crypto.pdf"
-      },
+      "links": { "github": "", "live": "", "paper": "" },
+      "placeholder": true,
       "featured": true
     },
     {
@@ -50,11 +45,8 @@
       },
       "category": "robotics",
       "techStack": ["ROS", "Python", "C++", "OpenCV"],
-      "links": {
-        "github": "https://github.com/username/robot-nav",
-        "live": "",
-        "paper": ""
-      },
+      "links": { "github": "", "live": "", "paper": "" },
+      "placeholder": true,
       "featured": true
     },
     {
@@ -69,11 +61,8 @@
       },
       "category": "webmobile",
       "techStack": ["Next.js", "TypeScript", "PostgreSQL", "Tailwind CSS"],
-      "links": {
-        "github": "https://github.com/username/webapp",
-        "live": "https://demo.example.com",
-        "paper": ""
-      },
+      "links": { "github": "", "live": "", "paper": "" },
+      "placeholder": true,
       "featured": true
     }
   ]
