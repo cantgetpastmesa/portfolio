@@ -1,40 +1,66 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  
-  /* Custom brand colors */
-  --color-dark-blue: #00007F;
-  --color-cyan: #007FFF;
-  --color-green: #7FFF7F;
-  --color-orange: #FF7F00;
-  --color-dark-red: #7F0000;
+  --background: #050505;
+  --foreground: #f2f2ec;
+  --muted: #8f8f88;
+  --line: rgba(242, 242, 236, 0.14);
+  --line-strong: rgba(242, 242, 236, 0.32);
+
+  /*
+   * Depth palette — the RealSense point-cloud (jet) colormap.
+   * Far → near: blue → cyan → green → lime → amber → orange → red.
+   * `--accent` is the *local* accent: pages and sections override it
+   * (style={{ "--accent": ... }}) and every accent utility, corner
+   * bracket, caret and ::selection follows automatically.
+   */
+  --depth-0: #4f7dff;
+  --depth-1: #00d4ff;
+  --depth-2: #2bffb0;
+  --depth-3: #a8ff3e;
+  --depth-4: #ffb340;
+  --depth-5: #ff8c1a;
+  --depth-6: #ff5040;
+  --robocol: #e4b503; /* ROBOCOL yellow — robotics page only */
+
+  --accent: var(--depth-1);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-google-sans-code);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
 
-/* Performance optimizations */
-canvas {
-  will-change: transform;
-  transform: translateZ(0);
+::selection {
+  background: var(--accent);
+  color: #000;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.mono {
+  font-family: var(--font-google-sans-code), ui-monospace, monospace;
+  font-optical-sizing: auto;
 }
 
 .bitcount {
   font-family: var(--font-bitcount), system-ui;
   font-optical-sizing: auto;
-  font-weight: 300;
+  font-weight: 400;
   font-style: normal;
   font-variation-settings:
     "slnt" 0,
@@ -43,14 +69,67 @@ canvas {
     "ELXP" 0;
 }
 
-.google-sans-code {
-  font-family: var(--font-google-sans-code), monospace;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
+/* Blueprint grid backdrop — subtle, fixed */
+.grid-backdrop {
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.08) 40%, transparent 85%);
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* Blinking terminal caret */
+.caret::after {
+  content: "_";
+  color: var(--accent);
+  animation: caret-blink 1.1s steps(2, start) infinite;
+}
+
+@keyframes caret-blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* Scanline sweep for panels that want it */
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.scanline {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.scanline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 33%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in oklab, var(--accent) 6%, transparent),
+    transparent
+  );
+  animation: scan 7s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanline::after,
+  .caret::after {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }

@@ -2,177 +2,113 @@
 import React from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "motion/react";
-import { Award, ExternalLink, Calendar, FileCheck } from "lucide-react";
-import { TypewriterText } from "@/components/TypewriterText";
-import { Vortex } from "@/components/ui/vortex";
 import certificationsData from "@/data/certifications.json";
+import { ScrambleText } from "@/components/ui/ScrambleText";
+import { HudLabel, Tag } from "@/components/ui/terminal";
+import { ExternalLink } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function CertificationsPage() {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
   const [filter, setFilter] = React.useState<"all" | "featured">("all");
 
-  const filteredCertifications =
+  const certs =
     filter === "all"
       ? certificationsData.certifications
-      : certificationsData.certifications.filter((cert) => cert.featured);
+      : certificationsData.certifications.filter((c) => c.featured);
 
   return (
-    <div className="min-h-screen bg-black pt-32 pb-20 px-4">
-      <Vortex
-        backgroundColor="black"
-        rangeY={800}
-        particleCount={100}
-        baseHue={220}
-        baseSpeed={0.1}
-        className="flex items-center justify-center w-full min-h-screen"
-      >
-        <div className="max-w-7xl mx-auto w-full">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
-        >
-          <TypewriterText
-            text={t("certifications.title")}
-            as="h1"
-            className="google-sans-code text-5xl md:text-7xl font-bold text-white mb-6"
-            speed={80}
-          />
-          <p className="text-xl text-neutral-400 max-w-3xl mx-auto">
-            {t("certifications.subtitle")}
-          </p>
-        </motion.div>
+    <div
+      className="relative min-h-screen pb-24 pt-32"
+      style={{ "--accent": "var(--depth-4)" } as React.CSSProperties}
+    >
+      <div className="grid-backdrop absolute inset-0" aria-hidden />
+      <div className="relative mx-auto max-w-5xl px-4 md:px-6">
+        <HudLabel>$ sha256sum ./credentials/*</HudLabel>
+        <ScrambleText
+          text={language === "en" ? "CERTIFICATIONS" : "CERTIFICACIONES"}
+          as="h1"
+          className="bitcount mt-3 block text-4xl text-foreground md:text-6xl"
+        />
+        <p className="mt-4 max-w-2xl text-sm text-muted">
+          {language === "en"
+            ? "Verified credentials — courses, professional certificates and achievements. Every entry links to its issuer for verification."
+            : "Credenciales verificadas — cursos, certificados profesionales y logros. Cada entrada enlaza a su emisor para verificación."}
+        </p>
 
-        {/* Filter Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex justify-center gap-4 mb-12 flex-wrap"
-        >
-          <button
-            onClick={() => setFilter("all")}
-            className={`bitcount px-6 py-2 rounded-full transition-all ${
-              filter === "all"
-                ? "bg-cyan-500 text-black"
-                : "bg-white/10 text-white hover:bg-white/20"
-            }`}
-          >
-            {t("certifications.allButton")}
-          </button>
-          <button
-            onClick={() => setFilter("featured")}
-            className={`bitcount px-6 py-2 rounded-full transition-all ${
-              filter === "featured"
-                ? "bg-cyan-500 text-black"
-                : "bg-white/10 text-white hover:bg-white/20"
-            }`}
-          >
-            {t("certifications.featuredButton")}
-          </button>
-        </motion.div>
-
-        {/* Certifications Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredCertifications.map((cert, index) => (
-            <motion.div
-              key={cert.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 + index * 0.05, duration: 0.4 }}
-              className="bg-linear-to-br from-neutral-900 to-black border border-white/10 rounded-2xl p-6 hover:border-cyan-500/50 transition-[border-color] group relative overflow-hidden"
-            >
-              {/* Featured Badge */}
-              {cert.featured && (
-                <div className="absolute top-4 right-4 bg-cyan-500 text-black px-3 py-1 rounded-full text-xs font-bold">
-                  {t("certifications.featuredTag")}
-                </div>
+        <div className="mono mt-10 flex gap-2 text-xs">
+          {(["all", "featured"] as const).map((f) => (
+            <button
+              key={f}
+              onClick={() => setFilter(f)}
+              className={cn(
+                "border px-3 py-1 uppercase tracking-wider transition-colors",
+                filter === f
+                  ? "border-accent bg-accent text-black"
+                  : "border-line text-muted hover:border-line-strong hover:text-foreground",
               )}
+            >
+              {f === "all"
+                ? language === "en"
+                  ? "All"
+                  : "Todas"
+                : language === "en"
+                  ? "Featured"
+                  : "Destacadas"}
+            </button>
+          ))}
+        </div>
 
-              {/* Award Icon */}
-              <div className="w-12 h-12 bg-cyan-500/10 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Award className="w-6 h-6 text-cyan-400" />
+        {/* Ledger */}
+        <div className="mt-8 space-y-px">
+          {certs.map((cert, i) => (
+            <motion.article
+              key={cert.id}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.04, duration: 0.3 }}
+              className="group border border-line bg-[#0a0a08]/60 p-6 transition-colors hover:border-line-strong"
+            >
+              <div className="mono flex flex-wrap items-baseline justify-between gap-2 text-[11px] uppercase tracking-[0.2em] text-muted">
+                <span>
+                  {String(i + 1).padStart(2, "0")} — {cert.issuer}
+                </span>
+                <span className="flex items-center gap-3">
+                  {cert.featured && <span className="text-accent">★ FEATURED</span>}
+                  <span>{cert.date}</span>
+                </span>
               </div>
-
-              {/* Title */}
-              <h3 className="bitcount text-xl font-bold text-white mb-2">
+              <h2 className="mono mt-3 text-lg font-bold text-foreground md:text-xl">
                 {cert.title[language]}
-              </h3>
-
-              {/* Issuer */}
-              <p className="text-cyan-400 text-sm mb-4 flex items-center gap-2">
-                <FileCheck className="w-4 h-4" />
-                {cert.issuer}
-              </p>
-
-              {/* Date */}
-              <p className="text-neutral-400 text-sm mb-4 flex items-center gap-2">
-                <Calendar className="w-4 h-4" />
-                {cert.date}
-              </p>
-
-              {/* Description */}
-              <p className="text-neutral-300 text-sm mb-4 leading-relaxed">
+              </h2>
+              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted">
                 {cert.description[language]}
               </p>
-
-              {/* Skills */}
-              <div className="mb-4">
-                <p className="text-xs text-neutral-500 mb-2 uppercase tracking-wider">
-                  {t("certifications.skills")}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {cert.skills.map((skill, idx) => (
-                    <span
-                      key={idx}
-                      className="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-neutral-300 hover:border-cyan-500/50 transition-colors"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {cert.skills.map((skill) => (
+                  <Tag key={skill}>{skill}</Tag>
+                ))}
               </div>
-
-              {/* Credential Info */}
-              <div className="border-t border-white/10 pt-4 mt-4">
-                <p className="text-xs text-neutral-500 mb-2">
-                  {t("certifications.credentialId")}: {cert.credentialId}
-                </p>
-                
-                {/* View Credential Link */}
+              <div className="mono mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-line pt-4 text-xs">
+                <span className="text-muted">
+                  ID: <span className="text-foreground/70">{cert.credentialId}</span>
+                </span>
                 {cert.credentialUrl !== "#" && (
                   <a
                     href={cert.credentialUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-cyan-400 text-sm hover:text-cyan-300 transition-colors font-medium"
+                    className="inline-flex items-center gap-1.5 text-muted transition-colors hover:text-accent"
                   >
-                    {t("certifications.viewCredential")}
-                    <ExternalLink className="w-4 h-4" />
+                    {language === "en" ? "VERIFY" : "VERIFICAR"}
+                    <ExternalLink className="h-3.5 w-3.5" />
                   </a>
                 )}
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
-
-        {/* Empty State */}
-        {filteredCertifications.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-20"
-          >
-            <Award className="w-20 h-20 text-neutral-700 mx-auto mb-4" />
-            <p className="text-neutral-500 text-lg">
-              {t("certifications.noCerts")}
-            </p>
-          </motion.div>
-        )}
-        </div>
-      </Vortex>
+      </div>
     </div>
   );
 }
