@@ -71,6 +71,7 @@ html {
 
 /* Blueprint grid backdrop — subtle, fixed */
 .grid-backdrop {
+  pointer-events: none;
   background-image:
     linear-gradient(var(--line) 1px, transparent 1px),
     linear-gradient(90deg, var(--line) 1px, transparent 1px);

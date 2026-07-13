@@ -125,6 +125,8 @@ const interests = [
   { en: "Machine Learning", es: "Machine Learning" },
   { en: "Web & Mobile Dev", es: "Desarrollo Web y Móvil" },
   { en: "Entrepreneurship", es: "Emprendimiento" },
+  { en: "Bio-tech", es: "Biotecnología" },
+  { en: "Medicine", es: "Medicina" },
 ];
 
 export default function Home() {
@@ -157,11 +159,11 @@ export default function Home() {
                 : "Ingeniería de sistemas inteligentes — investigación en IA/ML, robótica y el software que las une"}
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
-              <Link href="/robotics" className={BTN_PRIMARY}>
-                {language === "en" ? "Robotics ↗" : "Robótica ↗"}
+              <Link href="/projects" className={BTN_PRIMARY}>
+                {language === "en" ? "Projects" : "Proyectos"}
               </Link>
               <Link href="/contact" className={BTN_GHOST}>
-                {language === "en" ? "Contact" : "Contacto"}
+                {language === "en" ? "Contact me" : "Contáctame"}
               </Link>
             </div>
             <div className="mono flex flex-wrap gap-x-6 gap-y-1 pt-4 text-[11px] uppercase tracking-[0.2em] text-muted">
@@ -193,8 +195,8 @@ export default function Home() {
               <div className="scanline" aria-hidden />
             </Panel>
             <p className="mono mt-3 flex justify-between text-[10px] uppercase tracking-[0.2em] text-muted">
-              <span>FIG. 00 — SELF-PORTRAIT</span>
-              <span>INTEL REALSENSE // POINT CLOUD</span>
+              <span>{language === "en" ? "FIG. 00 — SELF-PORTRAIT" : "FIG. 00 — AUTORRETRATO"}</span>
+              <span>{language === "en" ? "INTEL REALSENSE // POINT CLOUD": "INTEL REALSENSE // NUBE DE PUNTOS"}</span>
             </p>
           </div>
         </div>

@@ -35,13 +35,13 @@ export function InstagramEmbed({ url, className }: { url: string; className?: st
       {load ? (
         <iframe
           src={`https://www.instagram.com/p/${id}/embed/captioned/`}
-          className="h-[560px] w-full border-0 bg-[#0a0a08]"
+          className="h-140 w-full border-0 bg-[#0a0a08]"
           loading="lazy"
           allowFullScreen
           title="Instagram post"
         />
       ) : (
-        <div className="mono flex h-[560px] w-full items-center justify-center border border-line text-xs uppercase tracking-widest text-muted">
+        <div className="mono flex h-140 w-full items-center justify-center border border-line text-xs uppercase tracking-widest text-muted">
           loading feed…
         </div>
       )}

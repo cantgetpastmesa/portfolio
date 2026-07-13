@@ -117,7 +117,7 @@ export const teamStats: { label: Bilingual; value: string }[] = [
   { label: { en: "MEMBERS", es: "MIEMBROS" }, value: "60+" }, // TODO
   { label: { en: "DIVISIONS", es: "DIVISIONES" }, value: "4" }, // TODO
   { label: { en: "ACTIVE PROJECTS", es: "PROYECTOS ACTIVOS" }, value: "3" },
-  { label: { en: "FOUNDED", es: "FUNDADO" }, value: "—" }, // TODO: founding year
+  { label: { en: "FOUNDED", es: "FUNDADO" }, value: "2010" },
 ];
 
 /**
@@ -126,7 +126,8 @@ export const teamStats: { label: Bilingual; value: string }[] = [
  * Leave empty to show the offline-feed notice.
  */
 export const instagramPosts: string[] = [
-  // "https://www.instagram.com/p/POST_ID_1/",
-  // "https://www.instagram.com/p/POST_ID_2/",
-  // "https://www.instagram.com/p/POST_ID_3/",
+  "https://www.instagram.com/p/DGnpGkohhGm",
+  "https://www.instagram.com/p/DJKmW0rRQiw",
+  "https://www.instagram.com/p/DKKoRGfOfT6",
+  "https://www.instagram.com/p/DRDbOOJkZC6",
 ];

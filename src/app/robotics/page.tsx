@@ -31,7 +31,7 @@ export default function RoboticsPage() {
         <div className="absolute inset-0 opacity-60" aria-hidden>
           <AsciiCanvas program={stream} fontSize={13} />
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/60 to-[#050505]" aria-hidden />
+        <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-[#050505]/60 to-[#050505]" aria-hidden />
 
         <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-36 md:px-6">
           <HudLabel>
@@ -84,7 +84,7 @@ export default function RoboticsPage() {
               {/* Print sheet with the technical drawing */}
               <div className="[direction:ltr]">
                 <Panel className="relative overflow-hidden bg-[#f2f2ec] p-0">
-                  <div className="relative aspect-[16/10]">
+                  <div className="relative aspect-16/10">
                     <Image
                       src={m.image}
                       alt={`${m.name} — ${m.class[language]}`}

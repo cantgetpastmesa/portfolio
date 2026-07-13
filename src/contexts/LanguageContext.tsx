@@ -62,7 +62,7 @@ const translations = {
     "nav.thesis": "Thesis",
     "nav.contact": "Contact",
     "nav.robotics": "Robotics",
-    "nav.certifications": "Certs",
+    "nav.certifications": "Certifications",
   },
   es: {
     "nav.home": "Inicio",
@@ -71,7 +71,7 @@ const translations = {
     "nav.thesis": "Tesis",
     "nav.contact": "Contacto",
     "nav.robotics": "Robótica",
-    "nav.certifications": "Certs",
+    "nav.certifications": "Certificaciones",
   },
 };
 
