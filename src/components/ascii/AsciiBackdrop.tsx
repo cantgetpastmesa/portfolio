@@ -7,7 +7,9 @@ import { useLanguage } from "@/contexts/LanguageContext";
  * Full-viewport ASCII program running behind a page, plus the floating
  * [FX] toggle so visitors can freeze it. The preference persists in
  * localStorage and is shared by every page via useSyncExternalStore, so
- * pausing on one route pauses them all.
+ * pausing on one route pauses them all. Pages that place their canvas
+ * themselves (e.g. the robotics hero) can consume useAsciiPaused and
+ * AsciiFxToggle directly.
  */
 
 const KEY = "ascii-fx-paused";
@@ -30,6 +32,36 @@ const getSnapshot = () => {
 };
 const getServerSnapshot = () => false;
 
+export function useAsciiPaused(): [boolean, () => void] {
+  const paused = React.useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const toggle = () => {
+    try {
+      localStorage.setItem(KEY, paused ? "0" : "1");
+    } catch {
+      // private mode etc. — toggle still works for this page via the event
+    }
+    window.dispatchEvent(new Event(EVT));
+  };
+  return [paused, toggle];
+}
+
+export function AsciiFxToggle() {
+  const { language } = useLanguage();
+  const [paused, toggle] = useAsciiPaused();
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      aria-pressed={paused}
+      className="mono fixed bottom-4 right-4 z-40 border border-line bg-[#050505]/85 px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] text-muted backdrop-blur-sm transition-colors hover:border-accent hover:text-accent"
+    >
+      {paused
+        ? `▶ ${language === "en" ? "PLAY FX" : "REANUDAR FX"}`
+        : `■ ${language === "en" ? "PAUSE FX" : "PAUSAR FX"}`}
+    </button>
+  );
+}
+
 export function AsciiBackdrop({
   program,
   fontSize = 13,
@@ -39,17 +71,7 @@ export function AsciiBackdrop({
   fontSize?: number;
   opacityClass?: string;
 }) {
-  const { language } = useLanguage();
-  const paused = React.useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
-
-  const toggle = () => {
-    try {
-      localStorage.setItem(KEY, paused ? "0" : "1");
-    } catch {
-      // private mode etc. — toggle still works for this page via the event
-    }
-    window.dispatchEvent(new Event(EVT));
-  };
+  const [paused] = useAsciiPaused();
 
   return (
     <>
@@ -57,16 +79,7 @@ export function AsciiBackdrop({
         <AsciiCanvas program={program} fontSize={fontSize} paused={paused} />
         <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/55 via-transparent to-[#050505]" />
       </div>
-      <button
-        type="button"
-        onClick={toggle}
-        aria-pressed={paused}
-        className="mono fixed bottom-4 right-4 z-40 border border-line bg-[#050505]/85 px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] text-muted backdrop-blur-sm transition-colors hover:border-accent hover:text-accent"
-      >
-        {paused
-          ? `▶ ${language === "en" ? "PLAY FX" : "REANUDAR FX"}`
-          : `■ ${language === "en" ? "PAUSE FX" : "PAUSAR FX"}`}
-      </button>
+      <AsciiFxToggle />
     </>
   );
 }

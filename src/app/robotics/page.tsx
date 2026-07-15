@@ -5,7 +5,8 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { AsciiCanvas } from "@/components/ascii/AsciiCanvas";
-import { dataStream } from "@/components/ascii/programs";
+import { AsciiFxToggle, useAsciiPaused } from "@/components/ascii/AsciiBackdrop";
+import { oscilloscope } from "@/components/ascii/programs";
 import { InstagramEmbed } from "@/components/InstagramEmbed";
 import { Corners, HudLabel, Panel, SectionHeader, Tag } from "@/components/ui/terminal";
 import { machines, presidencyLog, teamStats, instagramPosts } from "@/data/robotics";
@@ -19,17 +20,19 @@ const fadeIn = {
 
 export default function RoboticsPage() {
   const { language } = useLanguage();
-  const stream = React.useMemo(() => dataStream({ gap: 4 }), []);
+  const scope = React.useMemo(() => oscilloscope(), []);
+  const [paused] = useAsciiPaused();
 
   return (
     <div
       className="min-h-screen"
       style={{ "--accent": "var(--robocol)" } as React.CSSProperties}
     >
+      <AsciiFxToggle />
       {/* ── HERO ─────────────────────────────────────────────── */}
       <section className="relative overflow-hidden border-b border-line">
         <div className="absolute inset-0 opacity-60" aria-hidden>
-          <AsciiCanvas program={stream} fontSize={13} />
+          <AsciiCanvas program={scope} fontSize={13} paused={paused} />
         </div>
         <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-[#050505]/60 to-[#050505]" aria-hidden />
 

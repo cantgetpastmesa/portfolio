@@ -1,16 +1,5 @@
 import type { AsciiProgram } from "./AsciiCanvas";
 
-/** The RealSense jet colormap — mirrors --depth-0 … --depth-6 in globals.css. */
-export const JET = [
-  "#4f7dff",
-  "#00d4ff",
-  "#2bffb0",
-  "#a8ff3e",
-  "#ffb340",
-  "#ff8c1a",
-  "#ff5040",
-];
-
 const rgba = (hex: string, a: number) => {
   const n = parseInt(hex.slice(1), 16);
   return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
@@ -76,6 +65,52 @@ export function dataStream({
       if (d < 1) return { char, color: accent };
       const fade = 1 - d / len;
       return { char, color: `rgba(242,242,236,${(0.08 + fade * 0.3).toFixed(3)})` };
+    },
+  };
+}
+
+/**
+ * Oscilloscope — two slow waveform traces drifting over a faint center
+ * graticule, like a scope monitoring a live channel. CH1 is the accent,
+ * amplitude-modulated so bursts travel across the screen; CH2 is a calmer
+ * white reference. Traces render at half-cell vertical resolution via ▀/▄.
+ */
+export function oscilloscope({
+  accent = "#e4b503",
+  fps = 30,
+}: { accent?: string; fps?: number } = {}): AsciiProgram {
+  const ch1 = accent;
+  const ch1Glow = rgba(accent, 0.35);
+  const ch2 = "rgba(242,242,236,0.45)";
+  const ch2Glow = "rgba(242,242,236,0.16)";
+  const axis = "rgba(242,242,236,0.13)";
+  return {
+    fps,
+    main(x, y, ctx) {
+      const t = ctx.time;
+      const cy = ctx.rows * 0.5;
+
+      // CH1 — composite signal with a drifting amplitude envelope
+      const env = 0.25 + 0.75 * (0.5 + 0.5 * Math.sin((x / ctx.cols) * 5.2 - t * 0.8));
+      const amp = ctx.rows * 0.24 * env;
+      const y1 =
+        cy + (Math.sin(x * 0.09 + t * 1.3) * 0.65 + Math.sin(x * 0.021 - t * 0.45) * 0.35) * amp;
+      const d1 = Math.abs(y - y1);
+      if (d1 < 0.5) return { char: y1 - Math.floor(y1) < 0.5 ? "▀" : "▄", color: ch1 };
+
+      // CH2 — slower, fainter reference trace
+      const y2 =
+        cy +
+        Math.sin(x * 0.05 - t * 0.6) * ctx.rows * 0.12 +
+        Math.sin(x * 0.013 + t * 0.22) * ctx.rows * 0.07;
+      const d2 = Math.abs(y - y2);
+      if (d2 < 0.5) return { char: y2 - Math.floor(y2) < 0.5 ? "▀" : "▄", color: ch2 };
+
+      // soft glow around each trace, then the graticule
+      if (d1 < 1.6) return { char: "·", color: ch1Glow };
+      if (d2 < 1.6) return { char: "·", color: ch2Glow };
+      if (y === Math.floor(cy)) return { char: x % 10 === 0 ? "+" : "·", color: axis };
+      return null;
     },
   };
 }
@@ -174,37 +209,6 @@ export function golgol({
       if (upper) return { char: "▀", color };
       if (lower) return { char: "▄", color };
       return null;
-    },
-  };
-}
-
-/**
- * Classic plasma — three interfering sine fields, value mapped through the
- * jet colormap so the whole spectrum drifts across the screen.
- */
-export function plasma({
-  palette = JET,
-  fps = 16,
-}: { palette?: string[]; fps?: number } = {}): AsciiProgram {
-  const RAMP = " .·:-=+*#";
-  const soft = palette.map((c) => rgba(c, 0.6));
-  const bright = palette.map((c) => rgba(c, 0.95));
-  return {
-    fps,
-    main(x, y, ctx) {
-      const t = ctx.time * 0.5;
-      const xi = x / ctx.cellAspect;
-      const v1 = Math.sin(xi * 0.055 + t);
-      const v2 = Math.sin(0.045 * (xi * Math.sin(t * 0.35) + y * Math.cos(t * 0.25)) + t * 0.8);
-      const cx = xi * 0.035 + 0.4 * Math.sin(t * 0.4);
-      const cy = y * 0.045 + 0.4 * Math.cos(t * 0.3);
-      const v3 = Math.sin(Math.sqrt(cx * cx + cy * cy + 1) * 2.2 + t);
-      const n = Math.max(0, Math.min(1, 0.5 + (v1 + v2 + v3) * 0.32));
-      if (n < 0.12) return null;
-      const char = RAMP[Math.min(RAMP.length - 1, Math.floor(n * RAMP.length))];
-      if (char === " ") return null;
-      const ci = Math.min(palette.length - 1, Math.floor(n * palette.length));
-      return { char, color: n > 0.68 ? bright[ci] : soft[ci] };
     },
   };
 }
