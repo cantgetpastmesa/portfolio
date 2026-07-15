@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "motion/react";
 import projectsData from "@/data/projects.json";
+import { AsciiBackdrop } from "@/components/ascii/AsciiBackdrop";
+import { spiral } from "@/components/ascii/programs";
 import { ScrambleText } from "@/components/ui/ScrambleText";
 import { GithubIcon } from "@/components/icons/BrandIcons";
 import { ExternalLink, FileText } from "lucide-react";
@@ -14,6 +16,7 @@ type Category = "all" | "aiml" | "crypto" | "robotics" | "webmobile";
 export default function ProjectsPage() {
   const { language } = useLanguage();
   const [selected, setSelected] = useState<Category>("all");
+  const backdrop = React.useMemo(() => spiral({ accent: "#2bffb0" }), []);
 
   const categories: { id: Category; label: string }[] = [
     { id: "all", label: language === "en" ? "All" : "Todos" },
@@ -33,7 +36,7 @@ export default function ProjectsPage() {
       className="relative min-h-screen pb-24 pt-32"
       style={{ "--accent": "var(--depth-2)" } as React.CSSProperties}
     >
-      <div className="grid-backdrop absolute inset-0" aria-hidden />
+      <AsciiBackdrop program={backdrop} opacityClass="opacity-40" />
       <div className="relative mx-auto max-w-7xl px-4 md:px-6">
         <HudLabel>$ ls ./projects --all</HudLabel>
         <ScrambleText

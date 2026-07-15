@@ -8,7 +8,7 @@ import React, { useEffect, useRef } from "react";
  * Rendering goes through a glyph atlas so full-viewport grids stay cheap.
  */
 
-export type AsciiPointer = { x: number; y: number; active: boolean };
+export type AsciiPointer = { x: number; y: number; active: boolean; pressed: boolean };
 
 export type AsciiContext = {
   cols: number;
@@ -55,18 +55,26 @@ export function AsciiCanvas({
   fontSize = 14,
   className,
   ariaLabel,
+  paused = false,
 }: {
   program: AsciiProgram;
   fontSize?: number;
   className?: string;
   ariaLabel?: string;
+  /** freezes the loop on the last drawn frame (a first frame is always drawn) */
+  paused?: boolean;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const programRef = useRef(program);
+  const pausedRef = useRef(paused);
 
   useEffect(() => {
     programRef.current = program;
   }, [program]);
+
+  useEffect(() => {
+    pausedRef.current = paused;
+  }, [paused]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -89,7 +97,7 @@ export function AsciiCanvas({
     let visible = true;
     let disposed = false;
     const start = performance.now();
-    const pointer: AsciiPointer = { x: -1e4, y: -1e4, active: false };
+    const pointer: AsciiPointer = { x: -1e4, y: -1e4, active: false, pressed: false };
     let atlases = new Map<string, Atlas>();
 
     const measure = () => {
@@ -197,6 +205,7 @@ export function AsciiCanvas({
       if (disposed) return;
       raf = requestAnimationFrame(loop);
       if (!visible) return;
+      if (pausedRef.current && frame > 0) return;
       const fps = programRef.current.fps ?? 24;
       if (now - lastDraw < 1000 / fps) return;
       lastDraw = now;
@@ -231,8 +240,18 @@ export function AsciiCanvas({
     const onLeave = () => {
       pointer.active = false;
     };
+    const onDown = (e: PointerEvent) => {
+      onMove(e);
+      pointer.pressed = true;
+    };
+    const onUp = () => {
+      pointer.pressed = false;
+    };
     window.addEventListener("pointermove", onMove, { passive: true });
     window.addEventListener("pointerleave", onLeave);
+    window.addEventListener("pointerdown", onDown, { passive: true });
+    window.addEventListener("pointerup", onUp, { passive: true });
+    window.addEventListener("pointercancel", onUp, { passive: true });
 
     measure();
     programRef.current.init?.({ redraw });
@@ -249,6 +268,9 @@ export function AsciiCanvas({
       io.disconnect();
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerleave", onLeave);
+      window.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
     };
   }, [fontSize]);
 

@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion, AnimatePresence } from "motion/react";
+import { AsciiBackdrop } from "@/components/ascii/AsciiBackdrop";
+import { plasma } from "@/components/ascii/programs";
 import { ScrambleText } from "@/components/ui/ScrambleText";
 import { HudLabel, Panel } from "@/components/ui/terminal";
 import { GithubIcon, LinkedinIcon } from "@/components/icons/BrandIcons";
@@ -18,6 +20,7 @@ export default function ContactPage() {
     type: "success" | "error" | null;
     message: string;
   }>({ type: null, message: "" });
+  const backdrop = React.useMemo(() => plasma(), []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,7 +71,7 @@ export default function ContactPage() {
 
   return (
     <div className="relative min-h-screen pb-24 pt-32">
-      <div className="grid-backdrop absolute inset-0" aria-hidden />
+      <AsciiBackdrop program={backdrop} opacityClass="opacity-45" />
       <div className="relative mx-auto max-w-6xl px-4 md:px-6">
         <HudLabel>$ ./contact --init</HudLabel>
         <ScrambleText

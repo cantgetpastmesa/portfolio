@@ -3,6 +3,8 @@ import React from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "motion/react";
 import certificationsData from "@/data/certifications.json";
+import { AsciiBackdrop } from "@/components/ascii/AsciiBackdrop";
+import { donut } from "@/components/ascii/programs";
 import { ScrambleText } from "@/components/ui/ScrambleText";
 import { HudLabel, Tag } from "@/components/ui/terminal";
 import { ExternalLink } from "lucide-react";
@@ -11,6 +13,7 @@ import { cn } from "@/lib/utils";
 export default function CertificationsPage() {
   const { language } = useLanguage();
   const [filter, setFilter] = React.useState<"all" | "featured">("all");
+  const backdrop = React.useMemo(() => donut({ accent: "#ffb340" }), []);
 
   const certs =
     filter === "all"
@@ -22,7 +25,7 @@ export default function CertificationsPage() {
       className="relative min-h-screen pb-24 pt-32"
       style={{ "--accent": "var(--depth-4)" } as React.CSSProperties}
     >
-      <div className="grid-backdrop absolute inset-0" aria-hidden />
+      <AsciiBackdrop program={backdrop} opacityClass="opacity-45" />
       <div className="relative mx-auto max-w-5xl px-4 md:px-6">
         <HudLabel>$ sha256sum ./credentials/*</HudLabel>
         <ScrambleText
@@ -67,7 +70,7 @@ export default function CertificationsPage() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.04, duration: 0.3 }}
-              className="group border border-line bg-[#0a0a08]/60 p-6 transition-colors hover:border-line-strong"
+              className="group border border-line bg-[#0a0a08]/80 p-6 transition-colors hover:border-line-strong"
             >
               <div className="mono flex flex-wrap items-baseline justify-between gap-2 text-[11px] uppercase tracking-[0.2em] text-muted">
                 <span>

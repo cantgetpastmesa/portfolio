@@ -88,7 +88,7 @@ const focus = [
   },
   {
     id: "02",
-    art: "[o]══[o]\n │ ▲▲ │\n═╧════╧═",
+    art: " ◉───◉    [◉]\n │    ╲  ╱[█]╲\n═╧═    ╼▪ ╱ ╲",
     title: { en: "Robotics", es: "Robótica" },
     detail: {
       en: "Autonomous systems, SLAM, perception, ROBOCOL.",

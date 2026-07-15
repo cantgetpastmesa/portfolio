@@ -2,6 +2,8 @@
 import React from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import researchData from "@/data/research.json";
+import { AsciiBackdrop } from "@/components/ascii/AsciiBackdrop";
+import { sdfCube } from "@/components/ascii/programs";
 import { ScrambleText } from "@/components/ui/ScrambleText";
 import { GithubIcon } from "@/components/icons/BrandIcons";
 import { FileText } from "lucide-react";
@@ -15,13 +17,14 @@ const CATEGORIES = [
 
 export default function ResearchPage() {
   const { language } = useLanguage();
+  const backdrop = React.useMemo(() => sdfCube({ accent: "#4f7dff" }), []);
 
   return (
     <div
       className="relative min-h-screen pb-24 pt-32"
       style={{ "--accent": "var(--depth-0)" } as React.CSSProperties}
     >
-      <div className="grid-backdrop absolute inset-0" aria-hidden />
+      <AsciiBackdrop program={backdrop} opacityClass="opacity-45" />
       <div className="relative mx-auto max-w-7xl px-4 md:px-6">
         <HudLabel>$ cat ./research/index.md</HudLabel>
         <ScrambleText

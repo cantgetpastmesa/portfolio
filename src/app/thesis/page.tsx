@@ -2,7 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { AsciiCanvas } from "@/components/ascii/AsciiCanvas";
+import { AsciiBackdrop } from "@/components/ascii/AsciiBackdrop";
 import { wobbleField } from "@/components/ascii/programs";
 import { ScrambleText } from "@/components/ui/ScrambleText";
 import { Corners, HudLabel, Panel } from "@/components/ui/terminal";
@@ -16,10 +16,7 @@ export default function ThesisPage() {
       className="relative flex min-h-screen items-center overflow-hidden"
       style={{ "--accent": "var(--depth-5)" } as React.CSSProperties}
     >
-      <div className="absolute inset-0 opacity-50" aria-hidden>
-        <AsciiCanvas program={wobble} fontSize={13} />
-      </div>
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#050505]/40 via-transparent to-[#050505]" aria-hidden />
+      <AsciiBackdrop program={wobble} opacityClass="opacity-50" />
 
       <div className="relative mx-auto w-full max-w-4xl px-4 py-32 md:px-6">
         <HudLabel>$ tail -f thesis.log</HudLabel>
