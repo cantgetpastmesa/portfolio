@@ -53,7 +53,7 @@ export function AsciiFxToggle() {
       type="button"
       onClick={toggle}
       aria-pressed={paused}
-      className="mono fixed bottom-4 right-4 z-40 border border-line bg-[#050505]/85 px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] text-muted backdrop-blur-sm transition-colors hover:border-accent hover:text-accent"
+      className="mono fixed right-4 top-18 z-40 border border-accent/60 bg-[#050505]/85 px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] text-accent backdrop-blur-sm transition-colors hover:border-accent hover:bg-accent hover:text-[#050505]"
     >
       {paused
         ? `▶ ${language === "en" ? "PLAY FX" : "REANUDAR FX"}`
@@ -75,9 +75,11 @@ export function AsciiBackdrop({
 
   return (
     <>
-      <div className={`pointer-events-none fixed inset-0 ${opacityClass}`} aria-hidden>
+      {/* h-lvh: sized to the large viewport so iOS Safari's collapsing toolbar
+          never resizes (and thus wipes) the canvas mid-scroll */}
+      <div className={`pointer-events-none fixed inset-x-0 top-0 h-lvh ${opacityClass}`} aria-hidden>
         <AsciiCanvas program={program} fontSize={fontSize} paused={paused} />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/55 via-transparent to-[#050505]" />
+        <div className="absolute inset-0 bg-linear-to-b from-[#050505]/55 via-transparent to-[#050505]" />
       </div>
       <AsciiFxToggle />
     </>

@@ -118,10 +118,14 @@ export function AsciiCanvas({
         c = Math.max(1, Math.floor(rect.width / cw));
         r = Math.max(1, Math.floor(rect.height / ch));
       }
+      const w = Math.round(rect.width * dpr);
+      const h = Math.round(rect.height * dpr);
+      // assigning width/height wipes the canvas — skip when nothing changed
+      if (c === cols && r === rows && w === canvas.width && h === canvas.height) return false;
       cols = c;
       rows = r;
-      canvas.width = Math.round(rect.width * dpr);
-      canvas.height = Math.round(rect.height * dpr);
+      canvas.width = w;
+      canvas.height = h;
       atlases = new Map();
       return true;
     };
@@ -219,11 +223,11 @@ export function AsciiCanvas({
     };
 
     const ro = new ResizeObserver(() => {
-      if (measure()) redrawOrResume();
+      // repaint right away — a real resize just wiped the canvas, and the
+      // rAF loop (throttled, or idle when paused/reduced) may not repaint
+      // soon enough to avoid a visible blank flash
+      if (measure()) redraw();
     });
-    const redrawOrResume = () => {
-      if (reduced) redraw();
-    };
     ro.observe(canvas);
 
     const io = new IntersectionObserver(([entry]) => {
